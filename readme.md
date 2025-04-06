@@ -64,7 +64,7 @@ Out-of-the-box support for both:
 | Gradient Boosting Regressor | `sklearn.ensemble.GradientBoostingRegressor` |
 | k-NN Regressor              | `sklearn.neighbors.KNeighborsRegressor` |
 
----
+___
 
 ## 📦 Dependencies
 
@@ -73,34 +73,83 @@ Out-of-the-box support for both:
 | numpy            | Numerical computing library                                      | [numpy.org](https://numpy.org/)                      |
 | pandas           | Data manipulation and DataFrames                                 | [pandas.pydata.org](https://pandas.pydata.org/)      |
 | matplotlib       | Plotting and visualization                                       | [matplotlib.org](https://matplotlib.org/)            |
-| seaborn          | Statistical graphics (built on top of matplotlib)               | [seaborn.pydata.org](https://seaborn.pydata.org/)    |
-| scikit-learn     | Machine learning models and tools                                | [scikit-learn.org](https://scikit-learn.org/stable/) |
-| xgboost          | Extreme Gradient Boosting library                                | [xgboost.readthedocs.io](https://xgboost.readthedocs.io/) |
+| seaborn          | Statistical data visualization                                   | [seaborn.pydata.org](https://seaborn.pydata.org/)    |
+| scikit-learn     | ML modeling and metrics                                          | [scikit-learn.org](https://scikit-learn.org/stable/) |
+| xgboost          | Gradient boosting framework (optional)                          | [xgboost.readthedocs.io](https://xgboost.readthedocs.io/) |
 | torch            | PyTorch deep learning library                                    | [pytorch.org](https://pytorch.org/)                  |
-| tensorflow       | Google’s ML framework                                            | [tensorflow.org](https://www.tensorflow.org/)        |
-| openai           | OpenAI's API client for LLMs                                     | [openai-python](https://github.com/openai/openai-python) |
-| requests         | HTTP requests for APIs                                           | [requests](https://requests.readthedocs.io/)         |
-| PySimpleGUI      | Simplified GUI wrapper around Tkinter and Qt                    | [PySimpleGUI](https://pysimplegui.readthedocs.io/)   |
-| typing           | Type hinting support (built-in for Python ≥3.5)                 | [typing](https://docs.python.org/3/library/typing.html) |
-| pyodbc           | ODBC database access for SQL servers                             | [pyodbc](https://github.com/mkleehammer/pyodbc)      |
-| fitz             | PDF and image rendering via PyMuPDF                             | [PyMuPDF](https://pymupdf.readthedocs.io/)           |
-| pillow           | Image processing capabilities (PIL fork)                        | [pillow](https://python-pillow.org/)                 |
-| openpyxl         | Excel file reader/writer                                         | [openpyxl](https://openpyxl.readthedocs.io/)         |
-| soundfile        | Read/write sound files                                           | [soundfile](https://pysoundfile.readthedocs.io/)     |
-| sounddevice      | Interface for sound playback and recording                       | [sounddevice](https://python-sounddevice.readthedocs.io/) |
-| loguru           | Elegant logging library                                          | [loguru](https://github.com/Delgan/loguru)           |
-| statsmodels      | Statistical modeling and hypothesis testing                      | [statsmodels](https://www.statsmodels.org/)          |
-| dotenv           | Load environment variables from `.env` files                     | [dotenv](https://github.com/theskumar/python-dotenv) |
-| python-dotenv    | Same as above (used for `.env` management)                      | [python-dotenv](https://saurabh-kumar.com/python-dotenv/) |
+| tensorflow       | End-to-end ML platform                                           | [tensorflow.org](https://www.tensorflow.org/)        |
+| openai           | OpenAI’s Python API client                                       | [openai-python](https://github.com/openai/openai-python) |
+| requests         | HTTP requests for API and web access                             | [requests.readthedocs.io](https://requests.readthedocs.io/) |
+| PySimpleGUI      | GUI framework for desktop apps                                   | [pysimplegui.readthedocs.io](https://pysimplegui.readthedocs.io/) |
+| typing           | Type hinting standard library                                    | [typing Docs](https://docs.python.org/3/library/typing.html) |
+| pyodbc           | ODBC database connector                                          | [pyodbc GitHub](https://github.com/mkleehammer/pyodbc) |
+| fitz             | PDF document parser via PyMuPDF                                  | [pymupdf](https://pymupdf.readthedocs.io/)           |
+| pillow           | Image processing library                                         | [python-pillow.org](https://python-pillow.org/)       |
+| openpyxl         | Excel file processing                                            | [openpyxl Docs](https://openpyxl.readthedocs.io/)     |
+| soundfile        | Read/write sound file formats                                    | [pysoundfile](https://pysoundfile.readthedocs.io/)    |
+| sounddevice      | Audio I/O interface                                              | [sounddevice Docs](https://python-sounddevice.readthedocs.io/) |
+| loguru           | Structured, elegant logging                                      | [loguru GitHub](https://github.com/Delgan/loguru)     |
+| statsmodels      | Statistical tests and regression diagnostics                     | [statsmodels.org](https://www.statsmodels.org/)       |
+| dotenv           | Load environment variables from `.env`                          | [python-dotenv GitHub](https://github.com/theskumar/python-dotenv) |
+| python-dotenv    | Same as above (modern usage)                                     | [python-dotenv](https://saurabh-kumar.com/python-dotenv/) |
 
 ---
 
 ## 🧪 How to Run
 
-### 🔧 Setup
-
 ```bash
 git clone https://github.com/your-username/balance-projector.git
 cd balance-projector
 pip install -r requirements.txt
-jupyter notebook models.ipynb
+jupyter notebook balances.ipynb
+```
+
+---
+
+### 📁 Customize Dataset
+
+Replace dataset ingestion cell with:
+
+```python
+import pandas as pd
+df = pd.read_csv("your_dataset.csv")
+X = df.drop("target_column", axis=1)
+y = df["target_column"]
+```
+
+---
+
+### 📊 Outputs
+
+- R², MAE, MSE for each model
+- Bar plots of performance scores
+- Visual predicted vs. actual scatter charts
+- Residual error analysis
+
+---
+
+## 🔮 Roadmap
+
+- [ ] Add time series models (Prophet, ARIMA)
+- [ ] Integrate GridSearchCV for model tuning
+- [ ] SHAP-based interpretability
+- [ ] Flask/FastAPI API for deploying forecasts
+- [ ] LLM summarization of forecast outcomes
+
+---
+
+## 🤝 Contributing
+
+1. 🍴 Fork the project
+2. 🔧 Create a branch: `git checkout -b feat/new-feature`
+3. ✅ Commit and push changes
+4. 📬 Submit a pull request
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
