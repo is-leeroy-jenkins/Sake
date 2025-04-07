@@ -4,6 +4,13 @@
 <a href="https://colab.research.google.com/github/is-leeroy-jenkins/Sake/blob/main/ipynb/outlays.ipynb" target="_parent">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
+## 🔬 Data Source
+- File A (Account Balances) published monthly by agencies on ![USASpending](https://www.usaspending.gov/download_center/custom_account_data?about-the-data=file-a)
+- Required by the DATA Act.
+- Pulled automatically from data in the ![Governmentwide Treasury Account Symbol Adjusted Trial Balance System (GTAS)](https://www.fiscal.treasury.gov/gtas/)
+- Contains Budgetary resources, obligation, and outlay data for all the relevant ![Treasury Account Symbols (TAS)](https://tfx.treasury.gov/taxonomy/term/10257) in a reporting agency.
+- It includes both award and non-award spending (grouped together), and crosswalks with the SF 133 report.
+  
 ## 🚀 Features
 
 ### 🔄 Unified Evaluation Pipeline
