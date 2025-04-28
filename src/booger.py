@@ -51,7 +51,7 @@ from enum import Enum
 from sys import exit, exc_info
 import random
 import io
-from src.minion import App
+from minion import App
 import traceback
 import numpy as np
 from pandas import read_csv as CsvReader
