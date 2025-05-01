@@ -14,63 +14,70 @@
 ## 🚀 Features
 
 ### 🔄 Unified Evaluation Pipeline
-Easily run multiple models through a single function `train_and_evaluate()`, which handles:
-- Model training
-- Accuracy computation
-- Confusion matrix generation (for classifiers)
-- Performance reporting (classification or regression metrics)
+A single interface `train_and_evaluate()` to:
+- Train models
+- Cross-validate with nested k-fold
+- Generate predictions
+- Output evaluation plots & performance metrics
+- Store results & timings for meta-analysis
 
-### 🧠 Dual Model Support
-Out-of-the-box support for both:
-- **Classification models** such as Logistic Regression, SVM, Random Forest, XGBoost
-- **Regression models** such as Linear Regression, Ridge, SVR, Gradient Boosting
+### 🧠 Model Zoo: Dual-Task Ready
+Includes robust support for both tasks:
 
-### 📊 Visual Performance Reports
-- Heatmaps of confusion matrices
-- Auto-generated `classification_report` with precision, recall, F1-score
-- Regression summary with metrics like MAE, MSE, R²
-- Tabular performance summary across all models
 
-### 📁 Custom Dataset Integration
-- Use default Scikit-Learn datasets or plug in your own CSV
-- Built-in support for label encoding and numeric feature conversion
-- Easy integration with Pandas for pre-processing pipelines
+### 📊 Rich Visualization Toolkit
+- Confusion Matrix Heatmaps 🔥
+- ROC & Precision-Recall Curves 📈
+- Actual vs. Predicted Scatterplots 🎯
+- Residual Analysis & Error Distribution 🎭
+- Feature Importance Charts 📊
 
-### 🧠 Deep Learning Ready
-- Expandable with PyTorch and TensorFlow architectures
-- Importable modules for CNNs, RNNs, and Transformers
+### ⏱️ Timing & Benchmarking
+- Automatically logs `fit` and `predict` durations
+- Model performance rankings across tasks
+- Output available in tabular format for export
 
-### 🧪 Educational & Research Utility
-- Ideal for teaching ML fundamentals in a comparative format
-- Benchmarking for internal ML pipelines and research reproducibility
+### 💡 Custom Dataset Support
+- Accepts CSVs, Excel files, or Pandas DataFrames
+- Label encoding, numeric coercion, missing data handling
+- Drop-in replacement for datasets via parameter injection
 
----
-
-## 🧠 Classification Models
-
-| Model                  | Module                        |
-|------------------------|-------------------------------|
-| Logistic Regression    | `sklearn.linear_model`        |
-| Support Vector Machine | `sklearn.svm`                 |
-| Decision Tree          | `sklearn.tree`                |
-| Random Forest          | `sklearn.ensemble`            |
-| k-Nearest Neighbors    | `sklearn.neighbors`           |
-| Gaussian Naive Bayes   | `sklearn.naive_bayes`         |
-| XGBoost Classifier     | `xgboost.XGBClassifier`       |
+### 🧪 Research & Education Friendly
+- Benchmark dozens of models easily
+- Plug-in architecture for testing experimental models
+- Use in classrooms to demo interpretability, overfitting, and variance
 
 ---
 
-## 📉 Regression Models
+#### ✅ Classification:
+| Model                    | Module                               |
+|-------------------------|--------------------------------------|
+| Logistic Regression     | `sklearn.linear_model.LogisticRegression` |
+| SVM                     | `sklearn.svm.SVC`                    |
+| Decision Tree           | `sklearn.tree.DecisionTreeClassifier`|
+| Random Forest           | `sklearn.ensemble.RandomForestClassifier`|
+| XGBoost Classifier      | `xgboost.XGBClassifier`              |
+| K-Nearest Neighbors     | `sklearn.neighbors.KNeighborsClassifier`|
+| Gaussian Naive Bayes    | `sklearn.naive_bayes.GaussianNB`     |
+| **Extra Trees**         | `sklearn.ensemble.ExtraTreesClassifier`|
+| **Bagging**             | `sklearn.ensemble.BaggingClassifier`|
+| **AdaBoost**            | `sklearn.ensemble.AdaBoostClassifier`|
 
-| Model                        | Module                              |
-|-----------------------------|--------------------------------------|
-| Linear Regression           | `sklearn.linear_model.LinearRegression` |
-| Ridge Regression            | `sklearn.linear_model.Ridge`        |
-| Support Vector Regressor    | `sklearn.svm.SVR`                   |
-| Decision Tree Regressor     | `sklearn.tree.DecisionTreeRegressor` |
-| Random Forest Regressor     | `sklearn.ensemble.RandomForestRegressor` |
-| Gradient Boosting Regressor | `sklearn.ensemble.GradientBoostingRegressor` |
-| k-NN Regressor              | `sklearn.neighbors.KNeighborsRegressor` |
+#### 📉 Regression:
+| Model                        | Module                                   |
+|-----------------------------|------------------------------------------|
+| Linear Regression           | `sklearn.linear_model.LinearRegression`  |
+| Ridge Regression            | `sklearn.linear_model.Ridge`             |
+| Lasso Regression            | `sklearn.linear_model.Lasso`             |
+| ElasticNet                  | `sklearn.linear_model.ElasticNet`        |
+| Support Vector Regressor    | `sklearn.svm.SVR`                        |
+| Decision Tree Regressor     | `sklearn.tree.DecisionTreeRegressor`     |
+| Random Forest Regressor     | `sklearn.ensemble.RandomForestRegressor`|
+| Gradient Boosting Regressor | `sklearn.ensemble.GradientBoostingRegressor`|
+| XGBoost Regressor           | `xgboost.XGBRegressor`                   |
+| K-Nearest Neighbors         | `sklearn.neighbors.KNeighborsRegressor` |
+| **AdaBoost Regressor**      | `sklearn.ensemble.AdaBoostRegressor`    |
+| **Extra Trees Regressor**   | `sklearn.ensemble.ExtraTreesRegressor`  |
 
 ___
 
