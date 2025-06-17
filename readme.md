@@ -1,8 +1,8 @@
 ####  Sake
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/img/git/SakeProject.png)
 - Sake is your go-to, modular machine learning framework for Budget Execution data analysis built in Python with **Scikit**, **XGBoost**, **PyTorch**, and **TensorFlow**. Designed for rapid experimentation, visualization, and benchmarking of both **classification** and **regression** models, it provides a structured yet extensible workflow that’s equally useful for teaching, prototyping, and real-world application development.
-<a href="https://colab.research.google.com/github/is-leeroy-jenkins/Sake/blob/main/ipynb/outlays.ipynb" target="_parent">
-<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/is-leeroy-jenkins/Sake/blob/master/models.ipynb" target="_parent">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Google Colab"/></a>
 
 ## 🔬 Data Source
 - File A (Account Balances) published monthly by agencies on [USASpending](https://www.usaspending.gov/download_center/custom_account_data?about-the-data=file-a)
