@@ -160,11 +160,12 @@ y = df["target_column"]
 3. ✅ Commit and push changes
 4. 📬 Submit a pull request
 
----
 
-## 📜 License
 
-This project is licensed under the **MIT License**.
+## 📝 License
+
+Sake is published under the [MIT General Public License v3](https://github.com/is-leeroy-jenkins/Sake/blob/main/LICENSE).
+
 
 ---
 
