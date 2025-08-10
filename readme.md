@@ -164,7 +164,7 @@ y = df["target_column"]
 
 ## 📝 License
 
-Sake is published under the [MIT General Public License v3](https://github.com/is-leeroy-jenkins/sake/blob/main/LICENSE).
+Sake is published under the [MIT General Public License v3](https://github.com/is-leeroy-jenkins/Sake/blob/master/LICENSE.txt).
 
 
 ---
