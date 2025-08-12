@@ -1,6 +1,6 @@
 ####  Sake
 ![](https://github.com/is-leeroy-jenkins/sake/blob/master/resources/assets/img/git/SakeProject.png)
-- Sake is your go-to, modular machine learning framework for Budget Execution data analysis built in Python with **Scikit**, **XGBoost**, **PyTorch**, and **TensorFlow**. Designed for rapid experimentation, visualization, and benchmarking of both **classification** and **regression** models, it provides a structured yet extensible workflow that’s equally useful for teaching, prototyping, and real-world application development.
+- A modular machine learning framework for budget execution & data analysis built in Python with **Scikit**, **XGBoost**, **PyTorch**, and **TensorFlow**. Designed for rapid experimentation, visualization, and benchmarking of both **classification** and **regression** models, it provides a structured yet extensible workflow that’s equally useful for teaching, prototyping, and real-world application development.
 <a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
@@ -47,9 +47,9 @@ Includes robust support for both tasks:
 - Plug-in architecture for testing experimental models
 - Use in classrooms to demo interpretability, overfitting, and variance
 
----
 
-#### ✅ Classification:
+
+## ✅ Classification:
 | Model                    | Module                               |
 |-------------------------|--------------------------------------|
 | Logistic Regression     | `sklearn.linear_model.LogisticRegression` |
@@ -63,7 +63,7 @@ Includes robust support for both tasks:
 | **Bagging**             | `sklearn.ensemble.BaggingClassifier`|
 | **AdaBoost**            | `sklearn.ensemble.AdaBoostClassifier`|
 
-#### 📉 Regression:
+## 📉 Regression:
 | Model                        | Module                                   |
 |-----------------------------|------------------------------------------|
 | Linear Regression           | `sklearn.linear_model.LinearRegression`  |
@@ -79,7 +79,7 @@ Includes robust support for both tasks:
 | **AdaBoost Regressor**      | `sklearn.ensemble.AdaBoostRegressor`    |
 | **Extra Trees Regressor**   | `sklearn.ensemble.ExtraTreesRegressor`  |
 
-___
+
 
 ## 📦 Dependencies
 
@@ -108,7 +108,7 @@ ___
 | dotenv           | Load environment variables from `.env`                          | [python-dotenv GitHub](https://github.com/theskumar/python-dotenv) |
 | python-dotenv    | Same as above (modern usage)                                     | [python-dotenv](https://saurabh-kumar.com/python-dotenv/) |
 
----
+
 
 ## 🧪 How to Run
 
@@ -119,9 +119,9 @@ pip install -r requirements.txt
 jupyter notebook balances.ipynb
 ```
 
----
 
-### 📁 Customize Dataset
+
+## 📁 Customize Dataset
 
 Replace dataset ingestion cell with:
 
@@ -132,16 +132,16 @@ X = df.drop("target_column", axis=1)
 y = df["target_column"]
 ```
 
----
 
-### 📊 Outputs
+
+## 📊 Outputs
 
 - R², MAE, MSE for each model
 - Bar plots of performance scores
 - Visual predicted vs. actual scatter charts
 - Residual error analysis
 
----
+
 
 ## 🔮 Roadmap
 
@@ -151,7 +151,7 @@ y = df["target_column"]
 - [ ] Flask/FastAPI API for deploying forecasts
 - [ ] LLM summarization of forecast outcomes
 
----
+
 
 ## 🤝 Contributing
 
@@ -160,7 +160,8 @@ y = df["target_column"]
 3. ✅ Commit and push changes
 4. 📬 Submit a pull request
 
-
+> **Disclaimer**: This is for analytical exploration, research, and education purposes.  
+> This is **not** an official government product; validate against authoritative sources before use.
 
 ## 📝 License
 
