@@ -31,11 +31,12 @@ jupyter notebook balances.ipynb
 ## 🎯 Quickstart
 
 ### Option A — Google Colab (no local setup)
-
+```
 1. Click the **Open In Colab** badge above.
 2. Upload your CSV or mount Google Drive.
 3. Set `DATA_PATH` near the top of the notebook.
 4. **Runtime → Run all**.
+```
 
 ### Option B — Local (conda or venv)
 
@@ -55,24 +56,24 @@ jupyter notebook
 
 Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
-### 📊 Rich Visualization Toolkit
+## 📊 Rich Visualization Toolkit
 - Confusion Matrix Heatmaps 🔥
 - ROC & Precision-Recall Curves 📈
 - Actual vs. Predicted Scatterplots 🎯
 - Residual Analysis & Error Distribution 🎭
 - Feature Importance Charts 📊
 
-### ⏱️ Timing & Benchmarking
+## ⏱️ Timing & Benchmarking
 - Automatically logs `fit` and `predict` durations
 - Model performance rankings across tasks
 - Output available in tabular format for export
 
-### 💡 Custom Dataset Support
+## 💡 Custom Dataset Support
 - Accepts CSVs, Excel files, or Pandas DataFrames
 - Label encoding, numeric coercion, missing data handling
 - Drop-in replacement for datasets via parameter injection
 
-### 🧪 Research & Education Friendly
+## 🧪 Research & Education Friendly
 - Benchmark dozens of models easily
 - Plug-in architecture for testing experimental models
 - Use in classrooms to demo interpretability, overfitting, and variance
