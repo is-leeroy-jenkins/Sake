@@ -21,9 +21,32 @@ A single interface `train_and_evaluate()` to:
 - Output evaluation plots & performance metrics
 - Store results & timings for meta-analysis
 
-### 🧠 Model Zoo: Dual-Task Ready
-Includes robust support for both tasks:
+## 🎯 Quickstart
 
+### Option A — Google Colab (no local setup)
+
+1. Click the **Open In Colab** badge above.
+2. Upload your CSV or mount Google Drive.
+3. Set `DATA_PATH` near the top of the notebook.
+4. **Runtime → Run all**.
+
+### Option B — Local (conda or venv)
+
+```
+bash
+# 1) Create environment
+conda create -n sake python=3.11 -y
+conda activate sake
+
+# 2) Install dependencies
+pip install -U pip wheel setuptools
+pip install pandas numpy scipy matplotlib seaborn scikit-learn jupyter
+
+# 3) Launch Jupyter
+jupyter notebook
+```
+
+Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
 ### 📊 Rich Visualization Toolkit
 - Confusion Matrix Heatmaps 🔥
