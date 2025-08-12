@@ -10,11 +10,9 @@
 - Pulled automatically from data in the [Governmentwide Treasury Account Symbol Adjusted Trial Balance System (GTAS)](https://www.fiscal.treasury.gov/gtas/)
 - Contains Budgetary resources, obligation, and outlay data for all the relevant [Treasury Account Symbols (TAS)](https://tfx.treasury.gov/taxonomy/term/10257) in a reporting agency.
 - It includes both award and non-award spending (grouped together), and crosswalks with the SF 133 report.
-  
-## 🚀 Features
 
-### 🔄 Unified Evaluation Pipeline
-A single interface `train_and_evaluate()` to:
+## 🔄 Unified Evaluation Pipeline
+#### A single interface `train_and_evaluate()` to:
 - Train models
 - Cross-validate with nested k-fold
 - Generate predictions
