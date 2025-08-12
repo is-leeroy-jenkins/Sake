@@ -21,6 +21,15 @@ A single interface `train_and_evaluate()` to:
 - Output evaluation plots & performance metrics
 - Store results & timings for meta-analysis
 
+## 🧪 How to Run
+
+```bash
+git clone https://github.com/your-username/balance-projector.git
+cd balance-projector
+pip install -r requirements.txt
+jupyter notebook balances.ipynb
+```
+
 ## 🎯 Quickstart
 
 ### Option A — Google Colab (no local setup)
@@ -132,15 +141,6 @@ Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 | python-dotenv    | Same as above (modern usage)                                     | [python-dotenv](https://saurabh-kumar.com/python-dotenv/) |
 
 
-
-## 🧪 How to Run
-
-```bash
-git clone https://github.com/your-username/balance-projector.git
-cd balance-projector
-pip install -r requirements.txt
-jupyter notebook balances.ipynb
-```
 
 
 
