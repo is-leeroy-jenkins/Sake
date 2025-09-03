@@ -114,6 +114,7 @@ Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 | **Z-score / Outlier Tests** | Deviation from standard mean                           | Identify abnormal balances or lapse rates                            |
 | **Boxplots**            | Visual outlier detection                               | Discover obligation anomalies within agencies                        |
 
+
 ## ✅ Classification:
 | Model                    | Module                               |
 |-------------------------|--------------------------------------|
@@ -127,6 +128,7 @@ Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 | **Extra Trees**         | `sklearn.ensemble.ExtraTreesClassifier`|
 | **Bagging**             | `sklearn.ensemble.BaggingClassifier`|
 | **AdaBoost**            | `sklearn.ensemble.AdaBoostClassifier`|
+
 
 ## 📉 Regression:
 | Model                        | Module                                   |
@@ -176,7 +178,6 @@ Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
 
 
-
 ## 📁 Customize Dataset
 
 Replace dataset ingestion cell with:
@@ -187,7 +188,6 @@ df = pd.read_csv("your_dataset.csv")
 X = df.drop("target_column", axis=1)
 y = df["target_column"]
 ```
-
 
 
 ## 📊 Outputs
