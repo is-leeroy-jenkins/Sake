@@ -73,12 +73,46 @@ Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 - Label encoding, numeric coercion, missing data handling
 - Drop-in replacement for datasets via parameter injection
 
-## 🧪 Research & Education Friendly
+## 🧪 Research Ready
 - Benchmark dozens of models easily
 - Plug-in architecture for testing experimental models
 - Use in classrooms to demo interpretability, overfitting, and variance
 
 
+
+## 📊 Descriptive Statistics
+
+| Statistic         | Description                             | Use in Budget Analysis                                               |
+|------------------|-----------------------------------------|----------------------------------------------------------------------|
+| **Mean**         | Average value                           | Avg. Outlays, Obligations, etc., across accounts                |
+| **Median**       | Middle value                            | Robust central tendency in skewed financial data                    |
+| **Mode**         | Most frequent value                     | Identify common MainAccountCodes or Availability categories     |
+| **Standard Deviation** | Spread around the mean                | Indicates variability in execution rates or balances                |
+| **Variance**     | Square of standard deviation            | Used in statistical tests and model diagnostics                     |
+| **Range**        | Difference between max and min          | Measures total spread of financial metrics                          |
+| **Interquartile Range (IQR)** | Spread of middle 50% of data           | Identifies budget outliers and extreme accounts                     |
+| **Skewness**     | Asymmetry of distribution               | Skewed obligations suggest few accounts dominate totals             |
+| **Kurtosis**     | "Peakedness" of distribution            | High values indicate outlier-prone financial data                   |
+
+
+
+
+
+## 🔍 Inferrential Statistics
+
+
+| Metric           | Description                                            | Use in Budget Analysis                                               |
+|-------------------------|--------------------------------------------------------|----------------------------------------------------------------------|
+| **Pearson Correlation** | Linear relationship between variables                  | E.g., TotalResources vs. Obligations                                 |
+| **Spearman Correlation**| Monotonic (rank-based) relationship                    | More robust to non-linear trends in financial execution              |
+| **t-test**              | Compare means between 2 groups                         | Discretionary vs. Mandatory accounts' execution rates                |
+| **ANOVA**               | Compare means across multiple groups                   | Obligations across availability periods or account types             |
+| **Chi-square Test**     | Categorical independence                               | Are Main Account Codes related to availability or a specific agency? |
+| **Confidence Intervals**| Estimate range of a population mean                    | Upper and lower bound expected obligations or recoveries             |
+| **Regression Coefficients (p-values)** | Test variable significance                             | Are Recoveries a significant predictor of UnobligatedBalance?        |
+| **F-statistic (overall regression)**   | Test whole model fit                                   | Determines the combined influence of all predictors                  |
+| **Z-score / Outlier Tests** | Deviation from standard mean                           | Identify abnormal balances or lapse rates                            |
+| **Boxplots**            | Visual outlier detection                               | Discover obligation anomalies within agencies                        |
 
 ## ✅ Classification:
 | Model                    | Module                               |
@@ -164,23 +198,6 @@ y = df["target_column"]
 - Residual error analysis
 
 
-
-## 🔮 Roadmap
-
-- [ ] Add time series models (Prophet, ARIMA)
-- [ ] Integrate GridSearchCV for model tuning
-- [ ] SHAP-based interpretability
-- [ ] Flask/FastAPI API for deploying forecasts
-- [ ] LLM summarization of forecast outcomes
-
-
-
-## 🤝 Contributing
-
-1. 🍴 Fork the project
-2. 🔧 Create a branch: `git checkout -b feat/new-feature`
-3. ✅ Commit and push changes
-4. 📬 Submit a pull request
 
 > **Disclaimer**: This is for analytical exploration, research, and education purposes.  
 > This is **not** an official government product; validate against authoritative sources before use.
