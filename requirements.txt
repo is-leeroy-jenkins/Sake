@@ -1,6 +1,5 @@
 FreeSimpleGUI
 typing
-numpy
 openai
 groq
 requests
