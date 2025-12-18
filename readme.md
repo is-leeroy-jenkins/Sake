@@ -58,10 +58,11 @@ jupyter notebook
 Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
 
-## 🚀 Quickstar (Streamlit)
+## 🚀 Quickstart (Streamlit)
 
-This section describes how to clone the repository, install dependencies, and launch the **Sake**
-Streamlit application locally. The Streamlit app provides an interactive interface for exploring
+- This section describes how to clone the repository, install dependencies, and launch the **Sake**
+Streamlit application locally. 
+- The Streamlit app provides an interactive interface for exploring
 Account Balances data, performing statistical analysis, and training machine-learning models as
 described in this project.
 
