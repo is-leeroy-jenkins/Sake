@@ -28,7 +28,7 @@ pip install -r requirements.txt
 jupyter notebook balances.ipynb
 ```
 
-## 🎯 Quickstart
+## 🎯 Quickstart ( Colab )
 
 ### Option A — Google Colab (no local setup)
 ```
@@ -55,6 +55,135 @@ jupyter notebook
 ```
 
 Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
+
+Below is a **drop-in README section** you can paste directly into `README.md`. It is written for an **end-user audience**, mirrors the structure you used elsewhere, and assumes no prior familiarity with Streamlit.
+
+---
+
+## 🚀 Quickstar (Streamlit)
+
+This section describes how to clone the repository, install dependencies, and launch the **Sake**
+Streamlit application locally. The Streamlit app provides an interactive interface for exploring
+Account Balances data, performing statistical analysis, and training machine-learning models as
+described in this project.
+
+---
+
+### 📥 Clone the Repository
+
+First, clone the Sake repository from GitHub and navigate into the project directory:
+
+```bash
+git clone https://github.com/<your-username>/sake.git
+cd sake
+```
+
+---
+
+### 🐍 Create a Virtual Environment (Recommended)
+
+It is strongly recommended to run Sake in an isolated Python virtual environment.
+
+**Windows (PowerShell):**
+
+```bash
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+**macOS / Linux:**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Verify that the virtual environment is active before proceeding.
+
+---
+
+### 📦 Install Dependencies
+
+Install all required Python packages using the provided `requirements.txt` file:
+
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+> **Note**
+> Ensure that `streamlit` is included in `requirements.txt`. If not, install it manually:
+>
+> ```bash
+> pip install streamlit
+> ```
+
+---
+
+### ▶️ Launch the Streamlit Application
+
+Once dependencies are installed, start the Streamlit app by running:
+
+```bash
+streamlit run app.py
+```
+
+Streamlit will start a local development server and automatically open the application in your
+default web browser. If it does not open automatically, the terminal will display a local URL
+similar to:
+
+```
+http://localhost:8501
+```
+
+Open that address in your browser to access the app.
+
+---
+
+### 📊 Using the Application
+
+After launch, the Streamlit interface will guide you through:
+
+1. **Uploading File A (Account Balances)**
+   Upload an Excel file containing GTAS / USASpending Account Balances data.
+
+2. **Exploring the Data**
+   View previews, column summaries, descriptive statistics, and distributions.
+
+3. **Statistical Analysis**
+   Perform correlation analysis, hypothesis testing, and ANOVA-style comparisons.
+
+4. **Feature Engineering**
+   Apply dimensionality reduction techniques such as PCA, Truncated SVD, or Factor Analysis.
+
+5. **Model Training & Evaluation**
+   Train and evaluate regression, classification, or clustering models using a unified
+   `train_and_evaluate()` pipeline with optional cross-validation and diagnostics.
+
+---
+
+### 🛑 Stopping the App
+
+To stop the Streamlit server, return to the terminal and press:
+
+```
+Ctrl + C
+```
+
+---
+
+### 🧪 Supported Python Versions
+
+* Python **3.9 – 3.12** (64-bit recommended)
+* Tested on Windows and macOS
+
+
+
+If you want, I can also:
+
+* Add a **Docker-based run section**
+* Add **screenshots / UI walkthrough**
+* Align this section stylistically with another README you’ve already approved
 
 ## 📊 Rich Visualization Toolkit
 - Confusion Matrix Heatmaps 🔥
