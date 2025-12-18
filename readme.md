@@ -1,8 +1,6 @@
 ####  Sake
 ![](https://github.com/is-leeroy-jenkins/sake/blob/master/resources/assets/img/git/SakeProject.png)
 - A modular machine learning framework for budget execution & data analysis built in Python with **Scikit**, **XGBoost**, **PyTorch**, and **TensorFlow**. Designed for rapid experimentation, visualization, and benchmarking of both **classification** and **regression** models, it provides a structured yet extensible workflow that’s equally useful for teaching, prototyping, and real-world application development.
-<a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
-<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 ## 🔬 Data Source
 - File A (Account Balances) published monthly by agencies on [USASpending](https://www.usaspending.gov/download_center/custom_account_data?about-the-data=file-a)
@@ -31,6 +29,9 @@ jupyter notebook balances.ipynb
 ## 🎯 Quickstart ( Colab )
 
 ### Option A — Google Colab (no local setup)
+<a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 ```
 1. Click the **Open In Colab** badge above.
 2. Upload your CSV or mount Google Drive.
@@ -56,9 +57,6 @@ jupyter notebook
 
 Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
-Below is a **drop-in README section** you can paste directly into `README.md`. It is written for an **end-user audience**, mirrors the structure you used elsewhere, and assumes no prior familiarity with Streamlit.
-
----
 
 ## 🚀 Quickstar (Streamlit)
 
@@ -67,7 +65,7 @@ Streamlit application locally. The Streamlit app provides an interactive interfa
 Account Balances data, performing statistical analysis, and training machine-learning models as
 described in this project.
 
----
+
 
 ### 📥 Clone the Repository
 
@@ -78,7 +76,7 @@ git clone https://github.com/<your-username>/sake.git
 cd sake
 ```
 
----
+
 
 ### 🐍 Create a Virtual Environment (Recommended)
 
@@ -100,7 +98,7 @@ source .venv/bin/activate
 
 Verify that the virtual environment is active before proceeding.
 
----
+
 
 ### 📦 Install Dependencies
 
@@ -118,7 +116,7 @@ pip install -r requirements.txt
 > pip install streamlit
 > ```
 
----
+
 
 ### ▶️ Launch the Streamlit Application
 
@@ -138,7 +136,7 @@ http://localhost:8501
 
 Open that address in your browser to access the app.
 
----
+
 
 ### 📊 Using the Application
 
@@ -160,7 +158,7 @@ After launch, the Streamlit interface will guide you through:
    Train and evaluate regression, classification, or clustering models using a unified
    `train_and_evaluate()` pipeline with optional cross-validation and diagnostics.
 
----
+
 
 ### 🛑 Stopping the App
 
