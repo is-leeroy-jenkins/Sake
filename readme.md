@@ -27,10 +27,10 @@ jupyter notebook balances.ipynb
 ```
 
 ## 🎯 Quickstart ( Colab )
-
-### Option A — Google Colab (no local setup)
 <a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+### Option A — Google Colab (no local setup)
 
 ```
 1. Click the **Open In Colab** badge above.
