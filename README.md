@@ -29,6 +29,7 @@ jupyter notebook balances.ipynb
 ## 🎯 Quickstart ( Colab )
 <a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-nb.gif)
 
 ### Option A — Google Colab (no local setup)
 
@@ -38,7 +39,6 @@ jupyter notebook balances.ipynb
 3. Set `DATA_PATH` near the top of the notebook.
 4. **Runtime → Run all**.
 ```
-![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-nb.gif)
 
 ### Option B — Local (conda or venv)
 
@@ -61,13 +61,13 @@ Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
 ## 🚀 Quickstart (Streamlit)
 
+![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-Py.gif)
+
 - This section describes how to clone the repository, install dependencies, and launch the **Sake**
 Streamlit application locally. 
 - The Streamlit app provides an interactive interface for exploring
 Account Balances data, performing statistical analysis, and training machine-learning models as
 described in this project.
-
-![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-Py.gif)
 
 ### 📥 Clone the Repository
 
