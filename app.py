@@ -94,11 +94,10 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 # ================================================================================================
 # Streamlit Page Config
 # ================================================================================================
-st.set_page_config(page_title="Sake — Status of Balances", layout="wide")
-st.title("Sake — Status of Balances")
+st.set_page_config(page_title="Sake", layout="wide")
+st.title("Status of Balances")
 st.caption(
-    "End-to-end analysis and modeling workbench for File A (Account Balances): "
-    "descriptive statistics, inferential testing, feature analysis, and modeling."
+    "Analytics and Modeling Workbench for File A (Account Balances): "
 )
 
 
