@@ -38,6 +38,7 @@ jupyter notebook balances.ipynb
 3. Set `DATA_PATH` near the top of the notebook.
 4. **Runtime → Run all**.
 ```
+![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-nb.gif)
 
 ### Option B — Local (conda or venv)
 
