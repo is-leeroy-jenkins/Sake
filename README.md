@@ -66,7 +66,7 @@ Streamlit application locally.
 Account Balances data, performing statistical analysis, and training machine-learning models as
 described in this project.
 
-
+![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-Py.gif)
 
 ### 📥 Clone the Repository
 
