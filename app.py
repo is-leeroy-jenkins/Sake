@@ -94,7 +94,7 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 # ================================================================================================
 # Streamlit Page Config
 # ================================================================================================
-st.set_page_config(page_title="Sake", layout="wide")
+st.set_page_config(page_title="Sake", layout="wide", page_icon=r'resources/assets/favicon.ico')
 st.title("Status of Balances")
 st.caption(
     "Analytics and Modeling Workbench for File A (Account Balances): "
