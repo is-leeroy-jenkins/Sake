@@ -29,6 +29,7 @@ jupyter notebook balances.ipynb
 ## 🎯 Quickstart ( Colab )
 <a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-nb.gif)
 
 ### Option A — Google Colab (no local setup)
