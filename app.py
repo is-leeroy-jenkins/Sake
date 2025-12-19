@@ -534,29 +534,52 @@ with tab_inf:
                 default=numeric_cols[: min(8, len(numeric_cols))],
                 key="inf_num_by_class",
             )
-
-            rows = []
+            
+            rows = [ ]
+            
             for col in use_numeric:
-                x = pd.to_numeric(df[col], errors="coerce")
-                groups = []
-                for k in np.unique(labels):
-                    vals = x[labels == k].dropna().values
-                    if len(vals) >= 5:
-                        groups.append(vals)
-
-                if len(groups) < 2:
-                    continue
-
-                fstat, p_anova = stats.f_oneway(*groups)
-                kw = stats.kruskal(*groups)
-                rows.append(
-                    {
-                        "feature": col,
-                        "anova_p": float(p_anova),
-                        "kruskal_p": float(kw.pvalue),
-                        "groups_used": int(len(groups)),
-                    }
-                )
+	            x = pd.to_numeric( df[ col ], errors="coerce" )
+	            
+	            groups = [ ]
+	            variances = [ ]
+	            
+	            for k in np.unique( labels ):
+		            vals = x[ labels == k ].dropna( ).values
+		            if len( vals ) >= 5:
+			            groups.append( vals )
+			            variances.append( np.var( vals ) )
+	            
+	            # Preconditions
+	            if len( groups ) < 2:
+		            continue
+	            
+	            if np.allclose( np.concatenate( groups ), groups[ 0 ][ 0 ] ):
+		            # All values identical across all groups
+		            continue
+	            
+	            if np.all( np.array( variances ) == 0 ):
+		            # No within-group variance anywhere
+		            continue
+	            
+	            try:
+		            fstat, p_anova = stats.f_oneway( *groups )
+	            except Exception:
+		            p_anova = np.nan
+	            
+	            try:
+		            kw = stats.kruskal( *groups )
+		            p_kw = kw.pvalue
+	            except Exception:
+		            p_kw = np.nan
+	            
+	            rows.append(
+		            {
+				            "feature": col,
+				            "anova_p": p_anova,
+				            "kruskal_p": p_kw,
+				            "groups_used": len( groups ),
+		            }
+	            )
 
             if rows:
                 out = pd.DataFrame(rows).sort_values(["kruskal_p", "anova_p"]).head(50)
