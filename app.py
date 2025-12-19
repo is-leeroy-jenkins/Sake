@@ -95,11 +95,11 @@ from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 # Page Config
 # ================================================================================================
 st.set_page_config(
-    page_title="Sake — Status of Balances",
+    page_title="Sake",
     layout="wide",
 )
 
-st.title("Sake — Status of Balances")
+st.title("Status of Balances")
 st.caption(
     "Interactive analysis and modeling workbench for File A (Account Balances): "
     "descriptive statistics, inferential testing, feature analysis, and ML evaluation."
