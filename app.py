@@ -53,6 +53,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 from scipy import stats
 
@@ -273,80 +274,82 @@ class ModelRunResult:
 
 
 # ================================================================================================
-# Sidebar: Dataset Upload
+# Sidebar — Dataset (with fallback support)
 # ================================================================================================
-st.sidebar.header("Dataset")
-upload = st.sidebar.file_uploader("Upload File A (Excel)", type=["xlsx", "xls"])
 
-if not upload:
-    st.info("Upload a File A (Account Balances) Excel extract to begin.")
+DATA_FALLBACK_PATH = Path("data/Account Balances.xlsx")
+
+st.sidebar.header("Dataset")
+
+uploaded_file = st.sidebar.file_uploader(
+    "Upload File A (Excel)",
+    type=["xlsx", "xls"],
+    help="Upload a GTAS / USASpending File A (Account Balances) Excel extract.",
+)
+
+use_fallback = False
+source_label = None
+
+# --------------------------------------------------------------------------------
+# Fallback option (only if no upload)
+# --------------------------------------------------------------------------------
+if uploaded_file is None:
+    if DATA_FALLBACK_PATH.exists():
+        use_fallback = st.sidebar.checkbox(
+            "Use bundled sample dataset",
+            value=True,
+            help="Loads a local sample File A dataset shipped with the application.",
+        )
+    else:
+        st.sidebar.warning("No file uploaded and no fallback dataset found.")
+        st.stop()
+
+# --------------------------------------------------------------------------------
+# Unified Excel loading
+# --------------------------------------------------------------------------------
+if uploaded_file is not None:
+    excel_bytes = uploaded_file.getvalue()
+    xls = pd.ExcelFile(io.BytesIO(excel_bytes))
+    source_label = f"Uploaded file: {uploaded_file.name}"
+
+elif use_fallback:
+    xls = pd.ExcelFile(DATA_FALLBACK_PATH)
+    source_label = f"Fallback file: {DATA_FALLBACK_PATH.name}"
+
+else:
     st.stop()
 
-xls = pd.ExcelFile(io.BytesIO(upload.getvalue()))
-sheet = st.sidebar.selectbox("Sheet", xls.sheet_names, index=0)
+# --------------------------------------------------------------------------------
+# Sheet selection + load
+# --------------------------------------------------------------------------------
+sheet = st.sidebar.selectbox(
+    "Sheet",
+    options=xls.sheet_names,
+    index=0,
+)
+
 df_raw = pd.read_excel(xls, sheet_name=sheet)
 
-# Conservative cleaning; avoids losing legitimate zeros
-df = df_raw.dropna(how="all").drop_duplicates()
+# --------------------------------------------------------------------------------
+# Canonical working DataFrame (used everywhere)
+# --------------------------------------------------------------------------------
+df = (
+    df_raw
+    .dropna(how="all")
+    .drop_duplicates()
+)
 
+# --------------------------------------------------------------------------------
+# Canonical column classification (used everywhere)
+# --------------------------------------------------------------------------------
 numeric_cols = infer_numeric_columns(df)
-categorical_cols = infer_categorical_columns(df, numeric_cols)
 
-st.sidebar.subheader("Task & Target (Consistency Fix)")
+categorical_cols = [
+    c for c in df.columns
+    if c not in numeric_cols
+]
 
-task = st.sidebar.selectbox("Task", ["Regression", "Classification"], index=1)
-
-if task == "Regression":
-    target_options = numeric_cols
-else:
-    target_options = list(df.columns)
-
-if not target_options:
-    st.error("No valid target columns available based on the selected task.")
-    st.stop()
-
-target_col = st.sidebar.selectbox("Target Column", target_options, index=0)
-
-numeric_binning = None
-if task == "Classification":
-    # Only relevant if target is numeric-like
-    numeric_binning = st.sidebar.selectbox(
-        "If target is numeric-like: binning strategy",
-        ["None (label-encode raw values)", "Binary (median)", "Quantiles (4)"],
-        index=1,
-    )
-    if numeric_binning.startswith("None"):
-        numeric_binning = None
-
-st.sidebar.subheader("Features")
-feature_cols = st.sidebar.multiselect(
-    "Feature Columns",
-    options=[c for c in df.columns if c != target_col],
-    default=[c for c in numeric_cols if c != target_col][: min(12, max(1, len(numeric_cols) - 1))],
-)
-
-st.sidebar.subheader("Scaling (numeric features)")
-scaler_name = st.sidebar.selectbox(
-    "Feature Scaling",
-    [
-        "None",
-        "Standard",
-        "Robust",
-        "MinMax",
-        "MaxAbs",
-        "Normalizer (L2)",
-        "Quantile (Normal)",
-        "Quantile (Uniform)",
-        "Power (Yeo-Johnson)",
-    ],
-    index=1,
-)
-
-st.sidebar.subheader("Split / CV")
-test_size = st.sidebar.slider("Test size", 0.10, 0.50, 0.25, 0.05)
-random_state = st.sidebar.number_input("Random state", 0, 10_000, 42, 1)
-enable_cv = st.sidebar.checkbox("Enable cross-validation", value=True)
-cv_folds = st.sidebar.slider("CV folds", 3, 10, 5, 1)
+st.sidebar.caption(f"📄 Data source: {source_label}")
 
 
 # ================================================================================================
