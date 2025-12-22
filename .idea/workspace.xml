@@ -87,6 +87,7 @@
       <workItem from="1766065585810" duration="365000" />
       <workItem from="1766142237993" duration="6380000" />
       <workItem from="1766156956411" duration="1055000" />
+      <workItem from="1766158527385" duration="51000" />
     </task>
     <task id="LOCAL-00001" summary="updates">
       <option name="closed" value="true" />
@@ -264,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766158301380</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="updates">
+      <option name="closed" value="true" />
+      <created>1766158551984</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1766158551984</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

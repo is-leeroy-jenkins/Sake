@@ -62,6 +62,8 @@ Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
 ## 🚀 Quickstart (Streamlit)
 
+[![Streamlit App](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://sake-py.streamlit.app/)
+
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-Py.gif)
 
 - This section describes how to clone the repository, install dependencies, and launch the **Sake**
