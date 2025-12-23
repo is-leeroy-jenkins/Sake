@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 # ================================================================================================
-# Imports (ALL imports live here — no late imports anywhere)
+# Imports (ALL imports live here — no late imports)
 # ================================================================================================
 import io
 from pathlib import Path
@@ -23,7 +23,7 @@ from sklearn.preprocessing import (
     QuantileTransformer,
     PowerTransformer,
 )
-from sklearn.decomposition import PCA, TruncatedSVD, FactorAnalysis
+from sklearn.decomposition import PCA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.cluster import KMeans
 from sklearn.compose import ColumnTransformer
@@ -34,7 +34,7 @@ from sklearn.model_selection import KFold, StratifiedKFold, cross_validate
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 
 # ================================================================================================
-# Page Config (MUST be first Streamlit call)
+# Page Config (FIRST Streamlit call)
 # ================================================================================================
 st.set_page_config(
     page_title="Sake — Status of Balances",
@@ -49,10 +49,10 @@ st.caption(
 )
 
 # ================================================================================================
-# Helper Functions
+# Helpers
 # ================================================================================================
 def infer_numeric_columns(df: pd.DataFrame) -> List[str]:
-    cols = []
+    cols: List[str] = []
     for c in df.columns:
         if pd.api.types.is_numeric_dtype(df[c]):
             cols.append(c)
@@ -90,34 +90,37 @@ def safe_kruskal(groups: List[np.ndarray]) -> float | None:
 
 
 # ================================================================================================
-# Sidebar — Dataset (Upload + Fallback) [FINAL — PATH SAFE]
+# Sidebar — Dataset (Upload + Fallback) [SINGLE SOURCE OF TRUTH]
 # ================================================================================================
 APP_ROOT = Path(__file__).parent.resolve()
-DATA_FALLBACK_PATH = APP_ROOT / "data" / "sample_account_balances.xlsx"
-fallback_available = DATA_FALLBACK_PATH.exists()
+DATA_FALLBACK_PATH = APP_ROOT / "data" / "Account Balances.xlsx"
 
 st.sidebar.header("Dataset")
 
 uploaded_file = st.sidebar.file_uploader(
     "Upload File A (Excel)",
     type=["xlsx", "xls"],
+    key="upload_file_a",
 )
 
-# Checkbox is ALWAYS rendered if fallback exists
-use_fallback = False
-if fallback_available:
-    use_fallback = st.sidebar.checkbox(
-        "Use bundled sample dataset",
-        value=True,
-        help=f"Loads sample dataset from {DATA_FALLBACK_PATH}",
-    )
+use_fallback = st.sidebar.checkbox(
+    "Use bundled sample dataset",
+    value=True,
+    key="use_fallback",
+)
 
-# Unified loading logic
 if uploaded_file is not None:
     xls = pd.ExcelFile(io.BytesIO(uploaded_file.getvalue()))
     source_label = f"Uploaded file: {uploaded_file.name}"
 
-elif fallback_available and use_fallback:
+elif use_fallback:
+    if not DATA_FALLBACK_PATH.exists():
+        st.error(
+            f"Fallback dataset not found:\n{DATA_FALLBACK_PATH}\n\n"
+            "Ensure this file exists relative to app.py."
+        )
+        st.stop()
+
     xls = pd.ExcelFile(DATA_FALLBACK_PATH)
     source_label = f"Fallback file: {DATA_FALLBACK_PATH.name}"
 
@@ -131,35 +134,10 @@ sheet = st.sidebar.selectbox(
     "Sheet",
     options=xls.sheet_names,
     index=0,
+    key="dataset_sheet",
 )
 
 df_raw = pd.read_excel(xls, sheet_name=sheet)
-
-# --------------------------------------------------------------------------------
-# Unified Excel loading (NO premature st.stop)
-# --------------------------------------------------------------------------------
-if uploaded_file is not None:
-    xls = pd.ExcelFile(io.BytesIO(uploaded_file.getvalue()))
-    source_label = f"Uploaded file: {uploaded_file.name}"
-
-elif fallback_available and use_fallback:
-    xls = pd.ExcelFile(DATA_FALLBACK_PATH)
-    source_label = f"Fallback file: {DATA_FALLBACK_PATH.name}"
-
-else:
-    st.info("Please upload a dataset or enable the bundled sample dataset.")
-    st.stop()
-
-st.sidebar.caption(f"📄 Data source: {source_label}")
-
-sheet = st.sidebar.selectbox(
-    "Sheet",
-    options=xls.sheet_names,
-    index=0,
-)
-
-df_raw = pd.read_excel(xls, sheet_name=sheet)
-
 
 # ================================================================================================
 # Canonical Dataset Preparation (UNCONDITIONAL)
@@ -175,6 +153,7 @@ categorical_cols = [c for c in df.columns if c not in numeric_cols]
 task = st.sidebar.selectbox(
     "Task Type",
     ["Regression", "Classification"],
+    key="task_type",
 )
 
 target_options = numeric_cols if task == "Regression" else df.columns.tolist()
@@ -182,10 +161,11 @@ target_options = numeric_cols if task == "Regression" else df.columns.tolist()
 target_col = st.sidebar.selectbox(
     "Target Column",
     options=target_options,
+    key="target_column",
 )
 
 # ================================================================================================
-# Feature Scaling (UNCONDITIONAL)
+# Scaling (UNCONDITIONAL)
 # ================================================================================================
 scaler_name = st.sidebar.selectbox(
     "Feature Scaling",
@@ -200,6 +180,7 @@ scaler_name = st.sidebar.selectbox(
         "Power (Yeo-Johnson)",
     ],
     index=1,
+    key="scaler",
 )
 
 # ================================================================================================
@@ -230,30 +211,25 @@ with tab_desc:
     st.dataframe(desc.round(4), use_container_width=True)
 
 # ================================================================================================
-# Inferential Statistics (Defensive)
+# Inferential Statistics (DEFENSIVE)
 # ================================================================================================
 with tab_inf:
     st.subheader("Correlation Matrix")
-    corr = df[numeric_cols].corr()
-    st.dataframe(corr.round(4), use_container_width=True)
+    st.dataframe(df[numeric_cols].corr().round(4), use_container_width=True)
 
     st.subheader("Target-Aware Tests")
 
-    y_series = df[target_col].dropna()
+    y = df[target_col].dropna()
 
     if task == "Classification":
-        groups = {}
-        for label in y_series.unique():
-            groups[label] = df.loc[y_series == label, numeric_cols]
-
         rows = []
         for col in numeric_cols:
-            samples = [
-                g[col].dropna().values
-                for g in groups.values()
-                if g[col].dropna().shape[0] >= 5
+            groups = [
+                df.loc[y == label, col].dropna().values
+                for label in y.unique()
+                if df.loc[y == label, col].dropna().shape[0] >= 5
             ]
-            p = safe_kruskal(samples)
+            p = safe_kruskal(groups)
             if p is not None:
                 rows.append({"feature": col, "kruskal_p": p})
 
@@ -280,13 +256,14 @@ with tab_feat:
     st.pyplot(fig)
 
 # ================================================================================================
-# Models (SAFE)
+# Models
 # ================================================================================================
 with tab_models:
     features = st.multiselect(
         "Feature Columns",
         options=[c for c in df.columns if c != target_col],
         default=numeric_cols,
+        key="model_features",
     )
 
     X_model = df[features]
@@ -303,19 +280,31 @@ with tab_models:
 
     preprocessor = ColumnTransformer(
         [
-            ("num", Pipeline([
-                ("imputer", SimpleImputer(strategy="median")),
-                ("scaler", make_scaler(scaler_name)),
-            ]), [c for c in features if c in numeric_cols]),
-            ("cat", Pipeline([
-                ("imputer", SimpleImputer(strategy="most_frequent")),
-                ("onehot", OneHotEncoder(handle_unknown="ignore")),
-            ]), [c for c in features if c in categorical_cols]),
+            (
+                "num",
+                Pipeline(
+                    [
+                        ("imputer", SimpleImputer(strategy="median")),
+                        ("scaler", make_scaler(scaler_name)),
+                    ]
+                ),
+                [c for c in features if c in numeric_cols],
+            ),
+            (
+                "cat",
+                Pipeline(
+                    [
+                        ("imputer", SimpleImputer(strategy="most_frequent")),
+                        ("onehot", OneHotEncoder(handle_unknown="ignore")),
+                    ]
+                ),
+                [c for c in features if c in categorical_cols],
+            ),
         ]
     )
 
     pipe = Pipeline([("prep", preprocessor), ("model", model)])
 
-    if st.button("Run Cross-Validation"):
+    if st.button("Run Cross-Validation", key="run_cv"):
         scores = cross_validate(pipe, X_model, y_model, cv=cv, scoring=scoring)
         st.dataframe(pd.DataFrame(scores).describe().T.round(4), use_container_width=True)
