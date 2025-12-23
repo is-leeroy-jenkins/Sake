@@ -90,9 +90,10 @@ def safe_kruskal(groups: List[np.ndarray]) -> float | None:
 
 
 # ================================================================================================
-# Sidebar — Dataset (Upload + Fallback) [FINAL, CORRECT]
+# Sidebar — Dataset (Upload + Fallback) [FINAL — PATH SAFE]
 # ================================================================================================
-DATA_FALLBACK_PATH = Path("data/sample_account_balances.xlsx")
+APP_ROOT = Path(__file__).parent.resolve()
+DATA_FALLBACK_PATH = APP_ROOT / "data" / "sample_account_balances.xlsx"
 fallback_available = DATA_FALLBACK_PATH.exists()
 
 st.sidebar.header("Dataset")
@@ -102,14 +103,37 @@ uploaded_file = st.sidebar.file_uploader(
     type=["xlsx", "xls"],
 )
 
-# --- Fallback checkbox is ALWAYS rendered if fallback exists ---
+# Checkbox is ALWAYS rendered if fallback exists
 use_fallback = False
 if fallback_available:
     use_fallback = st.sidebar.checkbox(
         "Use bundled sample dataset",
         value=True,
-        help="Automatically loads a bundled sample File A dataset if no file is uploaded.",
+        help=f"Loads sample dataset from {DATA_FALLBACK_PATH}",
     )
+
+# Unified loading logic
+if uploaded_file is not None:
+    xls = pd.ExcelFile(io.BytesIO(uploaded_file.getvalue()))
+    source_label = f"Uploaded file: {uploaded_file.name}"
+
+elif fallback_available and use_fallback:
+    xls = pd.ExcelFile(DATA_FALLBACK_PATH)
+    source_label = f"Fallback file: {DATA_FALLBACK_PATH.name}"
+
+else:
+    st.info("Please upload a dataset or enable the bundled sample dataset.")
+    st.stop()
+
+st.sidebar.caption(f"📄 Data source: {source_label}")
+
+sheet = st.sidebar.selectbox(
+    "Sheet",
+    options=xls.sheet_names,
+    index=0,
+)
+
+df_raw = pd.read_excel(xls, sheet_name=sheet)
 
 # --------------------------------------------------------------------------------
 # Unified Excel loading (NO premature st.stop)
