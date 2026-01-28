@@ -46,22 +46,31 @@ from sklearn.metrics import (
     precision_recall_curve,
 )
 
+
 # -----------------------------------------------------------------------------
-# Config
+# CONSTANTS
 # -----------------------------------------------------------------------------
 APP_ROOT = Path(__file__).parent.resolve()
 FALLBACK_PATH = APP_ROOT / "data" / "Account Balances.xlsx"
+LOGO = r'resources\sake_logo.ico'
+FAVICON = r'resources\assets\favicon.ico'
+BLUE_DIVIDER = "<div style='height:2px;align:left;background:#0078FC;margin:6px 0 10px 0;'></div>"
+
+# -----------------------------------------------------------------------------
+# Config Initialization
+# -----------------------------------------------------------------------------
+st.logo( LOGO, size='large' )
 
 st.set_page_config(
-    page_title="Sake",
-    layout="wide",
-	page_icon=r'resources/assets/favicon.ico',
-    initial_sidebar_state="expanded",
+    page_title='Sake',
+    layout='wide',
+	page_icon=FAVICON,
+    initial_sidebar_state='expanded',
 )
 
-sns.set_theme(style="darkgrid")
-PALETTE = sns.color_palette("tab10")
-MARKERS = ["o", "s", "^", "D", "P", "X", "*", "v", "<", ">"]
+sns.set_theme(style='darkgrid')
+PALETTE = sns.color_palette('tab10')
+MARKERS = ['o', 's', '^', 'D', 'P', 'X', '*', 'v', '<', '>']
 
 
 def styled_scatter(
@@ -164,33 +173,35 @@ def render_table(
     max_rows: int = 500,
 ) -> None:
     """
-    Purpose:
-    ________
-    Render a pandas DataFrame as a styled HTML table suitable for Streamlit,
-    avoiding raw JSON output.
-
-    Parameters:
-    ___________
-    df : pd.DataFrame
-        DataFrame to render.
-    title : Optional[str], optional
-        Optional section title to display above the table.
-    caption : Optional[str], optional
-        Descriptive caption explaining the table content.
-    precision : int, optional
-        Maximum decimal precision for numeric columns.
-    dark_mode : bool, optional
-        If True, use dark-themed table colors; otherwise light theme.
-    max_rows : int, optional
-        Maximum number of rows to display; additional rows are truncated.
-
-    Returns:
-    ________
-    None
-        The function writes directly to the active Streamlit app.
+    
+	    Purpose:
+	    ________
+	    Render a pandas DataFrame as a styled HTML table suitable for Streamlit,
+	    avoiding raw JSON output.
+	
+	    Parameters:
+	    ___________
+	    df : pd.DataFrame
+	        DataFrame to render.
+	    title : Optional[str], optional
+	        Optional section title to display above the table.
+	    caption : Optional[str], optional
+	        Descriptive caption explaining the table content.
+	    precision : int, optional
+	        Maximum decimal precision for numeric columns.
+	    dark_mode : bool, optional
+	        If True, use dark-themed table colors; otherwise light theme.
+	    max_rows : int, optional
+	        Maximum number of rows to display; additional rows are truncated.
+	
+	    Returns:
+	    ________
+	    None
+	        The function writes directly to the active Streamlit app.
+	        
     """
     if title:
-        st.markdown(f"#### {title}")
+        st.markdown(f'#### {title}')
 
     if df is None or df.empty:
         st.info("No data to display.")
@@ -204,17 +215,17 @@ def render_table(
     fmt = {c: _auto_float_format(df_show[c], precision) for c in num_cols}
 
     if dark_mode:
-        text = "#F9FAFB"
-        header_bg = "#1F2937"
-        row_even = "#020617"
-        row_odd = "#030712"
-        border = "#374151"
+        text = '#F9FAFB'
+        header_bg = '#1F2937'
+        row_even = '#020617'
+        row_odd = '#030712'
+        border = '#374151'
     else:
-        text = "#111827"
-        header_bg = "#E5E7EB"
-        row_even = "#FFFFFF"
-        row_odd = "#F9FAFB"
-        border = "#D1D5DB"
+        text = '#111827'
+        header_bg = '#E5E7EB'
+        row_even = '#FFFFFF'
+        row_odd = '#F9FAFB'
+        border = '#D1D5DB'
 
     styler = (
         df_show.style
@@ -222,41 +233,41 @@ def render_table(
         .set_table_styles(
             [
                 {
-                    "selector": "table",
-                    "props": [
-                        ("border-collapse", "collapse"),
-                        ("width", "100%"),
-                        ("font-size", "0.85rem"),
+                    'selector': 'table',
+                    'props': [
+                        ('border-collapse', 'collapse'),
+                        ('width', '100%'),
+                        ('font-size', '0.85rem'),
                     ],
                 },
                 {
-                    "selector": "th",
-                    "props": [
-                        ("background-color", header_bg),
-                        ("color", text),
-                        ("border", f"1px solid {border}"),
-                        ("padding", "6px 8px"),
-                        ("font-weight", "600"),
-                        ("text-align", "left"),
-                        ("white-space", "nowrap"),
+                    'selector': 'th',
+                    'props': [
+                        ('background-color', header_bg),
+                        ('color', text),
+                        ('border', f'1px solid {border}'),
+                        ('padding', '6px 8px'),
+                        ('font-weight', '600'),
+                        ('text-align', 'left'),
+                        ('white-space', 'nowrap'),
                     ],
                 },
                 {
-                    "selector": "td",
-                    "props": [
-                        ("color", text),
-                        ("border", f"1px solid {border}"),
-                        ("padding", "4px 8px"),
-                        ("white-space", "nowrap"),
+                    'selector': 'td',
+                    'props': [
+                        ('color', text),
+                        ('border', f'1px solid {border}'),
+                        ('padding', '4px 8px'),
+                        ('white-space', 'nowrap'),
                     ],
                 },
                 {
-                    "selector": "tr:nth-child(even) td",
-                    "props": [("background-color", row_even)],
+                    'selector': 'tr:nth-child(even) td',
+                    'props': [('background-color', row_even)],
                 },
                 {
-                    "selector": "tr:nth-child(odd) td",
-                    "props": [("background-color", row_odd)],
+                    'selector': 'tr:nth-child(odd) td',
+                    'props': [('background-color', row_odd)],
                 },
             ]
         )
@@ -611,18 +622,18 @@ def categorical_default_candidates(
 # -----------------------------------------------------------------------------
 # Data loading (with fallback)
 # -----------------------------------------------------------------------------
-st.sidebar.header("📁 Data Input")
+st.sidebar.header('📁 Data Input')
 
 use_fallback = st.sidebar.checkbox(
-    "Load fallback dataset on startup",
+    'Load fallback data',
     value=True,
-    key="use_fallback",
+    key='use_fallback',
 )
 
 uploaded = st.sidebar.file_uploader(
-    "Upload File A (Excel)",
-    type=["xlsx", "xls"],
-    key="upload_file",
+    'Upload File A (Excel)',
+    type=['xlsx', 'xls'],
+    key='upload_file',
 )
 
 df: Optional[pd.DataFrame] = None
@@ -631,32 +642,32 @@ data_source: str = ""
 if uploaded is not None:
     xls = pd.ExcelFile(uploaded)
     sheet = st.sidebar.selectbox(
-        "Sheet",
+        'Sheet',
         options=xls.sheet_names,
         index=0,
-        key="sheet_upload",
+        key='sheet_upload',
     )
     df = xls.parse(sheet)
-    data_source = f"Uploaded: {uploaded.name} / {sheet}"
+    data_source = f'Uploaded: {uploaded.name} / {sheet}'
 elif use_fallback:
     if not FALLBACK_PATH.exists():
-        st.error(f"Fallback file not found: {FALLBACK_PATH}")
+        st.error(f'Fallback file not found: {FALLBACK_PATH}')
         st.stop()
     xls = pd.ExcelFile(FALLBACK_PATH)
     sheet = st.sidebar.selectbox(
-        "Sheet",
+        'Sheet',
         options=xls.sheet_names,
         index=0,
-        key="sheet_fallback",
+        key='sheet_fallback',
     )
     df = xls.parse(sheet)
-    data_source = f"Fallback: {FALLBACK_PATH.name} / {sheet}"
+    data_source = f'Fallback: {FALLBACK_PATH.name} / {sheet}'
 
 if df is None or df.empty:
-    st.info("Please upload a dataset or enable the fallback sample.")
+    st.info('Please upload a dataset or enable the fallback sample.')
     st.stop()
 
-st.sidebar.caption(f"📄 Source: {data_source}")
+st.sidebar.caption(f'📄 Source: {data_source}')
 
 # -----------------------------------------------------------------------------
 # Column registry + dtype-aware defaults
@@ -668,10 +679,10 @@ numeric_default: List[str] = numeric_default_candidates(df, numeric_raw)
 categorical_default: List[str] = categorical_default_candidates(df, categorical_raw)
 
 COLUMN_REGISTRY: Dict[str, List[str]] = {
-    "numeric_raw": numeric_raw,
-    "categorical_raw": categorical_raw,
-    "numeric_default": numeric_default,
-    "categorical_default": categorical_default,
+    'numeric_raw': numeric_raw,
+    'categorical_raw': categorical_raw,
+    'numeric_default': numeric_default,
+    'categorical_default': categorical_default,
 }
 
 numeric = numeric_raw
@@ -680,40 +691,40 @@ categorical = categorical_raw
 # -----------------------------------------------------------------------------
 # Global display controls
 # -----------------------------------------------------------------------------
-st.sidebar.header("⚙️ Display Controls")
+st.sidebar.header('⚙️ Display Controls')
 preview_rows = st.sidebar.slider(
-    "Preview rows", 10, 300, 50, 10, key="preview_rows"
+    'Preview rows', 10, 300, 50, 10, key='preview_rows'
 )
 dark_tables = st.sidebar.checkbox(
-    "Use dark tables", value=True, key="dark_tables"
+    'Use dark tables', value=True, key='dark_tables'
 )
 plot_theme = st.sidebar.selectbox(
-    "Plot theme", ["Dark", "Light"], index=0, key="plot_theme"
+    'Plot theme', ['Dark', 'Light'], index=0, key='plot_theme'
 )
 
-if plot_theme == "Dark":
-    plt.style.use("dark_background")
-    sns.set_theme(style="darkgrid")
+if plot_theme == 'Dark':
+    plt.style.use('dark_background')
+    sns.set_theme(style='darkgrid')
 else:
-    plt.style.use("default")
-    sns.set_theme(style="whitegrid")
+    plt.style.use('default')
+    sns.set_theme(style='whitegrid')
 
 # -----------------------------------------------------------------------------
 # Layout
 # -----------------------------------------------------------------------------
-st.title("Sake")
-st.caption("File A / Account Balances")
+st.markdown('#### Sake')
+st.caption('File A / Account Balances')
 
 tabs = st.tabs(
     [
-        "1. Data Overview",
-        "2. Descriptive Statistics",
-        "3. Inferential Statistics",
-        "4. Feature Analysis",
-        "5. Feature Engineering",
-        "6. Anomaly Detection",
-        "7. Modeling",
-        "8. Diagnostics",
+        '1. Data Overview',
+        '2. Descriptive Statistics',
+        '3. Inferential Statistics',
+        '4. Feature Analysis',
+        '5. Feature Engineering',
+        '6. Anomaly Detection',
+        '7. Modeling',
+        '8. Diagnostics',
     ]
 )
 
@@ -721,42 +732,40 @@ tabs = st.tabs(
 # 1. Data Overview
 # =============================================================================
 with tabs[0]:
-    st.subheader("1. Data Overview")
+    c1, c2, c3, c4 = st.columns(4, border=True)
+    c1.metric('Rows', f'{df.shape[0]:,}')
+    c2.metric('Columns', f'{df.shape[1]:,}')
+    c3.metric('Numeric', len(numeric))
+    c4.metric('Categorical', len(categorical))
 
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Rows", f"{df.shape[0]:,}")
-    c2.metric("Columns", f"{df.shape[1]:,}")
-    c3.metric("Numeric", len(numeric))
-    c4.metric("Categorical", len(categorical))
-
-    st.markdown("### Preview")
+    st.markdown('##### Preview')
     st.dataframe(df.head(preview_rows), use_container_width=True, height=420)
 
-    st.markdown("### Feature Quality")
+    st.markdown('##### Feature Quality')
     fq = feature_quality(df)
     render_table(
         fq,
         caption=(
-            "Completeness, cardinality, variance/entropy help identify ID-like columns, "
-            "sparse features, and candidates for encoding or removal."
+            'Completeness, cardinality, variance/entropy help identify ID-like columns, '
+            'sparse features, and candidates for encoding or removal.'
         ),
         dark_mode=dark_tables,
         precision=4,
     )
 
-    st.markdown("### Schema Summary")
+    st.markdown('### Schema Summary')
     schema = pd.DataFrame(
         {
-            "column": df.columns,
-            "dtype": [str(df[c].dtype) for c in df.columns],
-            "non_missing": [int(df[c].notna().sum()) for c in df.columns],
-            "missing": [int(df[c].isna().sum()) for c in df.columns],
-            "unique": [int(df[c].nunique(dropna=True)) for c in df.columns],
+            'column': df.columns,
+            'dtype': [str(df[c].dtype) for c in df.columns],
+            'non_missing': [int(df[c].notna().sum()) for c in df.columns],
+            'missing': [int(df[c].isna().sum()) for c in df.columns],
+            'unique': [int(df[c].nunique(dropna=True)) for c in df.columns],
         }
-    ).sort_values(["dtype", "missing", "unique"], ascending=[True, True, False])
+    ).sort_values(['dtype', 'missing', 'unique'], ascending=[True, True, False])
     render_table(
         schema,
-        caption="Check inferred dtypes and missingness before deeper analysis.",
+        caption='Check inferred dtypes and missingness before deeper analysis.',
         dark_mode=dark_tables,
         precision=0,
     )
@@ -765,28 +774,26 @@ with tabs[0]:
 # 2. Descriptive Statistics
 # =============================================================================
 with tabs[1]:
-    st.subheader("2. Descriptive Statistics")
-
     if not numeric:
-        st.warning("No numeric columns detected.")
+        st.warning('No numeric columns detected.')
     else:
-        st.markdown("### Numeric Profile")
+        st.markdown('### Numeric Profile')
 
         prof = descriptive_profile(df, numeric)
         render_table(
             prof,
             caption=(
-                "Extended distribution summary including tails, skewness, kurtosis, "
-                "and simple outlier rates."
+                'Extended distribution summary including tails, skewness, kurtosis, '
+                'and simple outlier rates.'
             ),
             dark_mode=dark_tables,
             precision=4,
         )
 
-        st.markdown("### Distributions by Feature")
+        st.markdown('### Distributions by Feature')
         default_hist = numeric_default[: min(6, len(numeric_default))]
         num_sel = st.multiselect(
-            "Numeric columns for histograms/boxplots",
+            'Numeric columns for histograms/boxplots',
             numeric,
             default=default_hist,
             key="desc_num_sel",
@@ -805,17 +812,17 @@ with tabs[1]:
                 v,
                 bins=bins,
                 alpha=0.85,
-                edgecolor="#0f172a",
+                edgecolor='#0f172a',
                 linewidth=0.6,
                 color=color,
             )
             ax.set_title(col)
-            ax.set_ylabel("Count")
+            ax.set_ylabel('Count')
             ax.grid(True, alpha=0.25)
             st.pyplot(fig)
             st.caption(
-                f"Histogram of {col}: look for heavy tails, multiple modes, "
-                "or spikes at specific values."
+                f'Histogram of {col}: look for heavy tails, multiple modes, '
+                'or spikes at specific values.'
             )
 
             fig2, ax2 = plt.subplots(figsize=(6, 3))
@@ -825,36 +832,36 @@ with tabs[1]:
                 showfliers=True,
                 patch_artist=True,
                 boxprops={
-                    "facecolor": color,
-                    "edgecolor": "#020617",
-                    "linewidth": 0.8,
+                    'facecolor': color,
+                    'edgecolor': '#020617',
+                    'linewidth': 0.8,
                 },
-                medianprops={"color": "#f9fafb", "linewidth": 1.4},
-                whiskerprops={"color": "#9ca3af", "linewidth": 0.8},
-                capprops={"color": "#9ca3af", "linewidth": 0.8},
-                flierprops={"marker": "o", "markersize": 3, "markerfacecolor": color},
+                medianprops={'color': '#f9fafb', 'linewidth': 1.4},
+                whiskerprops={'color': '#9ca3af', 'linewidth': 0.8},
+                capprops={'color': '#9ca3af', 'linewidth': 0.8},
+                flierprops={'marker': 'o', 'markersize': 3, 'markerfacecolor': color},
             )
 
-            for patch in bp["boxes"]:
+            for patch in bp['boxes']:
                 patch.set_facecolor(color)
                 patch.set_alpha(0.85)
 
-            ax2.set_title(f"Boxplot: {col}")
-            ax2.set_xlabel("Value")
-            ax2.grid(True, axis="x", alpha=0.25)
+            ax2.set_title(f'Boxplot: {col}')
+            ax2.set_xlabel('Value')
+            ax2.grid(True, axis='x', alpha=0.25)
             st.pyplot(fig2)
             st.caption(
-                f"Boxplot of {col}: outliers beyond whiskers may represent "
-                "data errors or genuinely extreme observations."
+                f'Boxplot of {col}: outliers beyond whiskers may represent '
+                'data errors or genuinely extreme observations.'
             )
 
-        st.markdown("### Normality Diagnostics (Q–Q Plots)")
+        st.markdown('##### Normality Diagnostics (Q–Q Plots)')
         default_qq = numeric_default[: min(3, len(numeric_default))]
         qq_sel = st.multiselect(
-            "Numeric columns for Q–Q plots",
+            'Numeric columns for Q–Q plots',
             numeric,
             default=default_qq,
-            key="desc_qq_sel",
+            key='desc_qq_sel',
         )
         for i, col in enumerate(qq_sel):
             v = safe_numeric_series(df, col)
@@ -902,22 +909,20 @@ with tabs[1]:
 # 3. Inferential Statistics
 # =============================================================================
 with tabs[2]:
-    st.subheader("3. Inferential Statistics")
-
     if not numeric:
-        st.warning("Inferential statistics require numeric measures.")
+        st.warning('Inferential statistics require numeric measures.')
     else:
-        st.markdown("### Correlation Analysis")
+        st.markdown('##### Correlation Analysis')
         default_corr = numeric_default[: min(10, len(numeric_default))]
         corr_cols = st.multiselect(
-            "Numeric columns for correlation",
+            'Numeric columns for correlation',
             numeric,
             default=default_corr,
-            key="inf_corr_cols",
+            key='inf_corr_cols',
         )
         corr_method = st.selectbox(
-            "Correlation method",
-            ["pearson", "spearman"],
+            'Correlation method',
+            ['pearson', 'spearman'],
             index=0,
             key="inf_corr_method",
         )
@@ -933,43 +938,43 @@ with tabs[2]:
                 annot=True,
                 fmt=".2f",
                 linewidths=0.5,
-                linecolor="black",
+                linecolor='black',
                 square=True,
                 vmin=-1.0,
                 vmax=1.0,
-                cbar_kws={"shrink": 0.8},
-                annot_kws={"size": 7},
+                cbar_kws={'shrink': 0.8},
+                annot_kws={'size': 7},
                 ax=ax,
             )
-            ax.set_title(f"{corr_method.title()} Correlation Heatmap")
+            ax.set_title(f'{corr_method.title()} Correlation Heatmap')
             st.pyplot(fig)
             st.caption(
-                "Warm cells indicate positive association; cool cells indicate negative association. "
-                "Magnitudes near ±1 suggest strong linear/monotonic relationships."
+                'Warm cells indicate positive association; cool cells indicate negative association. '
+                'Magnitudes near ±1 suggest strong linear/monotonic relationships.'
             )
 
             render_table(
-                corr_mat.reset_index().rename(columns={"index": "feature"}),
-                title="Correlation matrix",
+                corr_mat.reset_index().rename(columns={'index': 'feature'}),
+                title='Correlation matrix',
                 dark_mode=dark_tables,
                 precision=4,
             )
             render_table(
-                p_mat.reset_index().rename(columns={"index": "feature"}),
-                title="Correlation p-values",
+                p_mat.reset_index().rename(columns={'index': 'feature'}),
+                title='Correlation p-values',
                 dark_mode=dark_tables,
                 precision=6,
             )
 
-        st.markdown("### Confidence Intervals for Means")
+        st.markdown('##### Confidence Intervals for Means')
         default_ci = numeric_default[: min(8, len(numeric_default))]
         ci_cols = st.multiselect(
-            "Numeric columns for CI",
+            'Numeric columns for CI',
             numeric,
             default=default_ci,
-            key="inf_ci_cols",
+            key='inf_ci_cols',
         )
-        conf = st.slider("Confidence level", 0.80, 0.99, 0.95, 0.01, key="inf_ci_conf")
+        conf = st.slider('Confidence level', 0.80, 0.99, 0.95, 0.01, key='inf_ci_conf')
 
         ci_rows: List[Dict[str, Any]] = []
         for col in ci_cols:
@@ -984,85 +989,85 @@ with tabs[2]:
             hi = mean + tcrit * se
             ci_rows.append(
                 {
-                    "feature": col,
-                    "n": int(v.size),
-                    "mean": mean,
-                    "ci_low": lo,
-                    "ci_high": hi,
+                    'feature': col,
+                    'n': int(v.size),
+                    'mean': mean,
+                    'ci_low': lo,
+                    'ci_high': hi,
                 }
             )
 
         render_table(
             pd.DataFrame(ci_rows),
-            caption="Confidence intervals quantify uncertainty around each mean estimate.",
+            caption='Confidence intervals quantify uncertainty around each mean estimate.',
             dark_mode=dark_tables,
             precision=4,
         )
 
-        st.markdown("### Two-Group Comparisons")
+        st.markdown('##### Two-Group Comparisons')
         if categorical:
             num_feature = st.selectbox(
-                "Numeric feature",
+                'Numeric feature',
                 numeric,
                 index=(
                     numeric.index(numeric_default[0])
                     if numeric_default and numeric_default[0] in numeric
                     else 0
                 ),
-                key="inf_num_feature",
+                key='inf_num_feature',
             )
             group_col = st.selectbox(
-                "Grouping (categorical)",
+                'Grouping (categorical)',
                 categorical,
                 index=0,
-                key="inf_group_col",
+                key='inf_group_col',
             )
             group_vals = (
                 df[group_col].dropna().astype(str).unique().tolist()
             )
             if len(group_vals) >= 2:
                 sel_groups = st.multiselect(
-                    "Select exactly two groups",
+                    'Select exactly two groups',
                     options=group_vals,
                     default=group_vals[:2],
-                    key="inf_sel_groups",
+                    key='inf_sel_groups',
                 )
                 test_kind = st.selectbox(
-                    "Test type",
-                    ["Two-sample t-test", "Mann–Whitney U"],
+                    'Test type',
+                    ['Two-sample t-test', 'Mann–Whitney U'],
                     index=0,
-                    key="inf_test_kind",
+                    key='inf_test_kind',
                 )
 
                 if len(sel_groups) == 2:
                     a = pd.to_numeric(
                         df.loc[df[group_col].astype(str) == sel_groups[0], num_feature],
-                        errors="coerce",
+                        errors='coerce',
                     ).dropna()
                     b = pd.to_numeric(
                         df.loc[df[group_col].astype(str) == sel_groups[1], num_feature],
-                        errors="coerce",
+                        errors='coerce',
                     ).dropna()
 
                     if a.size >= 2 and b.size >= 2:
                         rows: List[Dict[str, Any]] = []
-                        if test_kind == "Two-sample t-test":
+                        if test_kind == 'Two-sample t-test':
                             t_stat, p_val = stats.ttest_ind(a, b, equal_var=False)
                             rows.append(
                                 {
-                                    "test": "t-test (Welch)",
-                                    "group_A": sel_groups[0],
-                                    "group_B": sel_groups[1],
-                                    "n_A": int(a.size),
-                                    "n_B": int(b.size),
-                                    "mean_A": float(a.mean()),
-                                    "mean_B": float(b.mean()),
-                                    "t": float(t_stat),
-                                    "p_value": float(p_val),
+                                    'test': 't-test (Welch)',
+                                    'group_A': sel_groups[0],
+                                    'group_B': sel_groups[1],
+                                    'n_A': int(a.size),
+                                    'n_B': int(b.size),
+                                    'mean_A': float(a.mean()),
+                                    'mean_B': float(b.mean()),
+                                    't': float(t_stat),
+                                    'p_value': float(p_val),
                                 }
                             )
                             caption = (
-                                "Welch's t-test compares means without assuming equal variances."
+                                'Welchs t-test compares means without assuming equal variances.'
                             )
                         else:
                             u_stat, p_val = stats.mannwhitneyu(
@@ -1070,19 +1075,19 @@ with tabs[2]:
                             )
                             rows.append(
                                 {
-                                    "test": "Mann–Whitney U",
-                                    "group_A": sel_groups[0],
-                                    "group_B": sel_groups[1],
-                                    "n_A": int(a.size),
-                                    "n_B": int(b.size),
-                                    "median_A": float(np.median(a)),
-                                    "median_B": float(np.median(b)),
-                                    "U": float(u_stat),
-                                    "p_value": float(p_val),
+                                    'test': 'Mann–Whitney U',
+                                    'group_A': sel_groups[0],
+                                    'group_B': sel_groups[1],
+                                    'n_A': int(a.size),
+                                    'n_B': int(b.size),
+                                    'median_A': float(np.median(a)),
+                                    'median_B': float(np.median(b)),
+                                    'U': float(u_stat),
+                                    'p_value': float(p_val),
                                 }
                             )
                             caption = (
-                                "Mann–Whitney compares distributions without assuming normality."
+                                'Mann–Whitney compares distributions without assuming normality.'
                             )
 
                         render_table(
@@ -1099,7 +1104,7 @@ with tabs[2]:
                             a,
                             bins=30,
                             alpha=0.6,
-                            edgecolor="#020617",
+                            edgecolor='#020617',
                             linewidth=0.5,
                             label=sel_groups[0],
                             color=color_a,
@@ -1108,61 +1113,59 @@ with tabs[2]:
                             b,
                             bins=30,
                             alpha=0.6,
-                            edgecolor="#020617",
+                            edgecolor='#020617',
                             linewidth=0.5,
                             label=sel_groups[1],
                             color=color_b,
                         )
-                        ax.set_title(f"{num_feature} by {group_col}")
+                        ax.set_title(f'{num_feature} by {group_col}')
                         ax.legend()
                         ax.grid(True, alpha=0.25)
                         st.pyplot(fig)
                         st.caption(
-                            "Overlapping histograms show practical differences between groups beyond the p-value."
+                            'Overlapping histograms show practical differences between groups beyond the p-value.'
                         )
 
 # =============================================================================
 # 4. Feature Analysis
 # =============================================================================
 with tabs[3]:
-    st.subheader("4. Feature Analysis")
-
     if len(numeric) < 2:
-        st.warning("Feature analysis requires at least two numeric columns.")
+        st.warning('Feature analysis requires at least two numeric columns.')
     else:
         default_fa = numeric_default[: min(12, len(numeric_default))]
         fa_cols = st.multiselect(
-            "Numeric features for analysis",
+            'Numeric features for analysis',
             numeric,
             default=default_fa,
-            key="fa_cols",
+            key='fa_cols',
         )
 
         if len(fa_cols) >= 2:
-            X = df[fa_cols].apply(pd.to_numeric, errors="coerce").dropna()
+            X = df[fa_cols].apply(pd.to_numeric, errors='coerce').dropna()
 
-            st.markdown("### Correlation Heatmap")
+            st.markdown('##### Correlation Heatmap')
             corr = X.corr()
             fig, ax = plt.subplots(figsize=(8, 6))
             sns.heatmap(
                 corr,
-                cmap="coolwarm",
+                cmap='coolwarm',
                 center=0,
                 annot=True,
-                fmt=".2f",
+                fmt='.2f',
                 linewidths=0.5,
-                linecolor="black",
+                linecolor='black',
                 square=True,
                 vmin=-1.0,
                 vmax=1.0,
-                cbar_kws={"shrink": 0.8},
-                annot_kws={"size": 7},
+                cbar_kws={'shrink': 0.8},
+                annot_kws={'size': 7},
                 ax=ax,
             )
-            ax.set_title("Correlation Heatmap")
+            ax.set_title('Correlation Heatmap')
             st.pyplot(fig)
             st.caption(
-                "Highly correlated features may be redundant; consider dropping or combining them."
+                'Highly correlated features may be redundant; consider dropping or combining them.'
             )
 
             pairs: List[Dict[str, Any]] = []
@@ -1172,43 +1175,43 @@ with tabs[3]:
                     r = float(corr.loc[a, b])
                     pairs.append(
                         {
-                            "feature_A": a,
-                            "feature_B": b,
-                            "corr": r,
-                            "abs_corr": abs(r),
+                            'feature_A': a,
+                            'feature_B': b,
+                            'corr': r,
+                            'abs_corr': abs(r),
                         }
                     )
             top_pairs = (
                 pd.DataFrame(pairs)
-                .sort_values("abs_corr", ascending=False)
+                .sort_values('abs_corr', ascending=False)
                 .head(20)
-                .drop(columns=["abs_corr"])
+                .drop(columns=['abs_corr'])
             )
             render_table(
                 top_pairs,
-                title="Top correlated feature pairs",
+                title='Top correlated feature pairs',
                 dark_mode=dark_tables,
                 precision=4,
             )
 
-            st.markdown("### PCA (Principal Component Analysis)")
+            st.markdown('##### PCA (Principal Component Analysis)')
             X_scaled = StandardScaler().fit_transform(X.values)
             n_comp = st.slider(
-                "Number of components", 2, min(10, len(fa_cols)), 3, 1, key="fa_pca_n"
+                'Number of components', 2, min(10, len(fa_cols)), 3, 1, key='fa_pca_n'
             )
             pca = PCA(n_components=n_comp, random_state=42)
             Z = pca.fit_transform(X_scaled)
 
             evr = pd.DataFrame(
                 {
-                    "component": [f"PC{i+1}" for i in range(len(pca.explained_variance_ratio_))],
-                    "explained_variance_ratio": pca.explained_variance_ratio_,
-                    "cumulative": np.cumsum(pca.explained_variance_ratio_),
+                    'component': [f'PC{i+1}' for i in range(len(pca.explained_variance_ratio_))],
+                    'explained_variance_ratio': pca.explained_variance_ratio_,
+                    'cumulative': np.cumsum(pca.explained_variance_ratio_),
                 }
             )
             render_table(
                 evr,
-                caption="Cumulative variance shows how many components are needed to capture most signal.",
+                caption='Cumulative variance shows how many components are needed to capture most signal.',
                 dark_mode=dark_tables,
                 precision=4,
             )
@@ -1216,16 +1219,16 @@ with tabs[3]:
             if Z.shape[1] >= 2:
                 fig3, ax3 = plt.subplots(figsize=(8, 6))
                 styled_scatter(ax3, Z[:, 0], Z[:, 1], series_index=0, size=30)
-                ax3.set_xlabel("PC1")
-                ax3.set_ylabel("PC2")
-                ax3.set_title("PCA Projection (PC1 vs PC2)")
+                ax3.set_xlabel('PC1')
+                ax3.set_ylabel('PC2')
+                ax3.set_title('PCA Projection (PC1 vs PC2)')
                 st.pyplot(fig3)
                 st.caption(
-                    "Separated clusters in PCA space suggest meaningful latent groupings."
+                    'Separated clusters in PCA space suggest meaningful latent groupings.'
                 )
 
-            st.markdown("### k-Means Clustering (PCA space)")
-            k = st.slider("Number of clusters (k)", 2, 12, 3, 1, key="fa_k")
+            st.markdown('##### k-Means Clustering (PCA space)')
+            k = st.slider('Number of clusters (k)', 2, 12, 3, 1, key='fa_k')
             km = KMeans(n_clusters=k, n_init=10, random_state=42)
             labels = km.fit_predict(Z)
 
@@ -1238,7 +1241,7 @@ with tabs[3]:
             )
             render_table(
                 counts,
-                caption="Cluster counts show the size of each k-means partition.",
+                caption='Cluster counts show the size of each k-means partition.',
                 dark_mode=dark_tables,
                 precision=0,
             )
@@ -1255,81 +1258,79 @@ with tabs[3]:
                         Z[idx, 1],
                         s=30,
                         alpha=0.9,
-                        edgecolors="#020617",
+                        edgecolors='#020617',
                         linewidths=0.6,
                         marker=marker,
-                        label=f"Cluster {lbl}",
+                        label=f'Cluster {lbl}',
                         c=[color],
                     )
-                ax4.set_xlabel("PC1")
-                ax4.set_ylabel("PC2")
-                ax4.set_title("k-Means Clusters in PCA Space")
+                ax4.set_xlabel('PC1')
+                ax4.set_ylabel('PC2')
+                ax4.set_title('k-Means Clusters in PCA Space')
                 ax4.grid(True, alpha=0.25)
                 ax4.legend(title="Cluster", fontsize=8)
                 st.pyplot(fig4)
                 st.caption(
-                    "Distinct shapes and colors make clusters easier to separate visually."
+                    'Distinct shapes and colors make clusters easier to separate visually.'
                 )
 
 # =============================================================================
 # 5. Feature Engineering
 # =============================================================================
 with tabs[4]:
-    st.subheader("5. Feature Engineering")
-
     if not numeric:
-        st.warning("Feature engineering operates on numeric columns.")
+        st.warning('Feature engineering operates on numeric columns.')
     else:
         default_fe = numeric_default[: min(10, len(numeric_default))]
         fe_cols = st.multiselect(
-            "Numeric features to transform",
+            'Numeric features to transform',
             numeric,
             default=default_fe,
-            key="fe_cols",
+            key='fe_cols',
         )
 
         if not fe_cols:
-            st.info("Select at least one numeric feature.")
+            st.info('Select at least one numeric feature.')
         else:
             c1, c2, c3 = st.columns(3)
             with c1:
                 impute_strats = st.multiselect(
-                    "Imputation strategy (in order)",
-                    ["mean", "median", "most_frequent", "constant", "knn"],
-                    default=["median"],
-                    key="fe_impute",
+                    'Imputation strategy (in order)',
+                    ['mean', 'median', 'most_frequent', 'constant', 'knn'],
+                    default=['median'],
+                    key='fe_impute',
                 )
                 const_fill = st.number_input(
-                    "Constant fill value", value=0.0, key="fe_const"
+                    'Constant fill value', value=0.0, key='fe_const'
                 )
             with c2:
                 do_winsor = st.checkbox(
-                    "Winsorize (cap extremes)", value=False, key="fe_winsor"
+                    'Winsorize (cap extremes)', value=False, key='fe_winsor'
                 )
                 w_lim = st.slider(
-                    "Winsor tail limit", 0.0, 0.25, 0.01, 0.005, key="fe_wlim"
+                    'Winsor tail limit', 0.0, 0.25, 0.01, 0.005, key='fe_wlim'
                 )
             with c3:
                 scaler_name = st.selectbox(
-                    "Scaling",
-                    ["None", "Standard", "MinMax", "Robust"],
+                    'Scaling',
+                    ['None', 'Standard', 'MinMax', 'Robust'],
                     index=1,
-                    key="fe_scaler",
+                    key='fe_scaler',
                 )
                 log1p = st.checkbox(
-                    "Log1p transform (positive-only)", value=False, key="fe_log1p"
+                    'Log1p transform (positive-only)', value=False, key='fe_log1p'
                 )
 
             X = df[fe_cols].apply(pd.to_numeric, errors="coerce")
 
             X_imp = X.copy()
             for s in impute_strats:
-                if s == "knn":
-                    knn = KNNImputer(n_neighbors=5, weights="distance")
+                if s == 'knn':
+                    knn = KNNImputer(n_neighbors=5, weights='distance')
                     X_imp = pd.DataFrame(knn.fit_transform(X_imp), columns=fe_cols)
-                elif s == "constant":
+                elif s == 'constant':
                     simp = SimpleImputer(
-                        strategy="constant", fill_value=float(const_fill)
+                        strategy='constant', fill_value=float(const_fill)
                     )
                     X_imp = pd.DataFrame(simp.fit_transform(X_imp), columns=fe_cols)
                 else:
@@ -1352,108 +1353,106 @@ with tabs[4]:
                         continue
                     X_log[c] = np.log1p(v)
 
-            if scaler_name == "Standard":
+            if scaler_name == 'Standard':
                 sc = StandardScaler()
                 X_out = pd.DataFrame(sc.fit_transform(X_log.values), columns=fe_cols)
-            elif scaler_name == "MinMax":
+            elif scaler_name == 'MinMax':
                 sc = MinMaxScaler()
                 X_out = pd.DataFrame(sc.fit_transform(X_log.values), columns=fe_cols)
-            elif scaler_name == "Robust":
+            elif scaler_name == 'Robust':
                 sc = RobustScaler()
                 X_out = pd.DataFrame(sc.fit_transform(X_log.values), columns=fe_cols)
             else:
                 X_out = X_log.copy()
 
-            st.markdown("### Transformed Data Preview")
+            st.markdown('##### Transformed Data Preview')
             render_table(
                 X_out.head(preview_rows),
-                caption="Feature matrix after imputation, optional winsorization/log transform, and scaling.",
+                caption='Feature matrix after imputation, optional winsorization/log transform, and scaling.',
                 dark_mode=dark_tables,
                 precision=4,
             )
 
-            st.markdown("### Before vs After (Summary Metrics)")
+            st.markdown('##### Before vs After (Summary Metrics)')
             before = descriptive_profile(df, fe_cols)[
-                ["feature", "mean", "std", "skew", "kurtosis", "outlier_iqr_pct"]
+                ['feature', 'mean', 'std', 'skew', 'kurtosis', 'outlier_iqr_pct']
             ]
             after_df = descriptive_profile(X_out, fe_cols)[
-                ["feature", "mean", "std", "skew", "kurtosis", "outlier_iqr_pct"]
+                ['feature', 'mean', 'std', 'skew', 'kurtosis', 'outlier_iqr_pct']
             ]
             merged = before.merge(
-                after_df, on="feature", suffixes=("_before", "_after")
+                after_df, on='feature', suffixes=('_before', '_after')
             )
             render_table(
                 merged,
-                caption="Compare distribution metrics before/after transformations.",
+                caption='Compare distribution metrics before/after transformations.',
                 dark_mode=dark_tables,
                 precision=4,
             )
 
-            st.session_state["X_fe"] = X_out
-            st.session_state["X_fe_cols"] = fe_cols
+            st.session_state['X_fe'] = X_out
+            st.session_state['X_fe_cols'] = fe_cols
 
 # =============================================================================
 # 6. Anomaly Detection
 # =============================================================================
 with tabs[5]:
-    st.subheader("6. Anomaly Detection")
-
     if not numeric:
-        st.warning("Requires numeric columns for anomaly detection.")
+        st.warning('Requires numeric columns for anomaly detection.')
     else:
         default_ad = numeric_default[: min(10, len(numeric_default))]
         ad_cols = st.multiselect(
-            "Numeric columns used for detection",
+            'Numeric columns used for detection',
             numeric,
             default=default_ad,
-            key="ad_cols",
+            key='ad_cols',
         )
         methods = st.multiselect(
-            "Detection methods",
+            'Detection methods',
             [
-                "Z-score (univariate)",
-                "IQR rule (univariate)",
-                "MAD robust z (univariate)",
-                "Isolation Forest (multivariate)",
+                'Z-score (univariate)',
+                'IQR rule (univariate)',
+                'MAD robust z (univariate)',
+                'Isolation Forest (multivariate)',
             ],
             default=[
-                "Z-score (univariate)",
-                "IQR rule (univariate)",
-                "Isolation Forest (multivariate)",
+                'Z-score (univariate)',
+                'IQR rule (univariate)',
+                'Isolation Forest (multivariate)',
             ],
-            key="ad_methods",
+            key='ad_methods',
         )
 
         if not ad_cols:
-            st.info("Select at least one numeric column.")
+            st.info('Select at least one numeric column.')
         else:
-            X = df[ad_cols].apply(pd.to_numeric, errors="coerce")
+            X = df[ad_cols].apply(pd.to_numeric, errors='coerce')
             X = X.fillna(X.median(numeric_only=True))
 
             flags = pd.DataFrame(index=df.index)
             summary: List[Dict[str, Any]] = []
 
-            if "Z-score (univariate)" in methods:
+            if 'Z-score (univariate)' in methods:
                 z_thr = st.slider(
-                    "Z-score threshold", 2.0, 6.0, 3.0, 0.1, key="ad_z_thr"
+                    'Z-score threshold', 2.0, 6.0, 3.0, 0.1, key='ad_z_thr'
                 )
                 zf = np.zeros(len(df), dtype=bool)
                 for c in ad_cols:
                     v = X[c].values.astype(float)
                     z = (v - v.mean()) / (v.std(ddof=0) + 1e-12)
                     zf |= np.abs(z) > float(z_thr)
-                flags["z_flag"] = zf
+                flags['z_flag'] = zf
                 summary.append(
                     {
-                        "method": "Z-score",
-                        "flagged": int(zf.sum()),
-                        "flagged_pct": float(zf.mean() * 100.0),
+                        'method': 'Z-score',
+                        'flagged': int(zf.sum()),
+                        'flagged_pct': float(zf.mean() * 100.0),
                     }
                 )
 
-            if "IQR rule (univariate)" in methods:
+            if 'IQR rule (univariate)' in methods:
                 k = st.slider(
-                    "IQR multiplier", 1.0, 5.0, 1.5, 0.1, key="ad_iqr_k"
+                    'IQR multiplier', 1.0, 5.0, 1.5, 0.1, key='ad_iqr_k'
                 )
                 iqf = np.zeros(len(df), dtype=bool)
                 for c in ad_cols:
@@ -1464,18 +1463,18 @@ with tabs[5]:
                     lo = q1 - float(k) * iqr
                     hi = q3 + float(k) * iqr
                     iqf |= (v < lo) | (v > hi)
-                flags["iqr_flag"] = iqf
+                flags['iqr_flag'] = iqf
                 summary.append(
                     {
-                        "method": "IQR",
-                        "flagged": int(iqf.sum()),
-                        "flagged_pct": float(iqf.mean() * 100.0),
+                        'method': 'IQR',
+                        'flagged': int(iqf.sum()),
+                        'flagged_pct': float(iqf.mean() * 100.0),
                     }
                 )
 
-            if "MAD robust z (univariate)" in methods:
+            if 'MAD robust z (univariate)' in methods:
                 rz_thr = st.slider(
-                    "Robust z threshold", 2.0, 8.0, 3.5, 0.1, key="ad_rz_thr"
+                    'Robust z threshold', 2.0, 8.0, 3.5, 0.1, key='ad_rz_thr'
                 )
                 mf = np.zeros(len(df), dtype=bool)
                 for c in ad_cols:
@@ -1484,42 +1483,42 @@ with tabs[5]:
                     mad = np.median(np.abs(v - med)) + 1e-12
                     rz = 0.6745 * (v - med) / mad
                     mf |= np.abs(rz) > float(rz_thr)
-                flags["mad_flag"] = mf
+                flags['mad_flag'] = mf
                 summary.append(
                     {
-                        "method": "MAD robust z",
-                        "flagged": int(mf.sum()),
-                        "flagged_pct": float(mf.mean() * 100.0),
+                        'method': 'MAD robust z',
+                        'flagged': int(mf.sum()),
+                        'flagged_pct': float(mf.mean() * 100.0),
                     }
                 )
 
-            if "Isolation Forest (multivariate)" in methods:
+            if 'Isolation Forest (multivariate)' in methods:
                 cont = st.slider(
-                    "IsolationForest contamination",
+                    'IsolationForest contamination',
                     0.001,
                     0.20,
                     0.02,
                     0.001,
-                    key="ad_iso_cont",
+                    key='ad_iso_cont',
                 )
                 iso = IsolationForest(
                     random_state=42, contamination=float(cont)
                 )
                 pred = iso.fit_predict(X.values)
                 isof = pred == -1
-                flags["iso_flag"] = isof
+                flags['iso_flag'] = isof
                 summary.append(
                     {
-                        "method": "IsolationForest",
-                        "flagged": int(isof.sum()),
-                        "flagged_pct": float(isof.mean() * 100.0),
+                        'method': 'IsolationForest',
+                        'flagged': int(isof.sum()),
+                        'flagged_pct': float(isof.mean() * 100.0),
                     }
                 )
 
-            st.markdown("### Detection Summary")
+            st.markdown('##### Detection Summary')
             render_table(
                 pd.DataFrame(summary),
-                caption="Univariate rules flag extremes per feature; multivariate methods flag unusual combinations.",
+                caption='Univariate rules flag extremes per feature; multivariate methods flag unusual combinations.',
                 dark_mode=dark_tables,
                 precision=4,
             )
@@ -1528,10 +1527,10 @@ with tabs[5]:
                 False, index=df.index
             )
             flagged_rows = df.loc[combined, ad_cols]
-            st.markdown("### Flagged Rows (Any Method)")
+            st.markdown('##### Flagged Rows (Any Method)')
             render_table(
                 flagged_rows.head(300),
-                caption="Validate whether flagged rows represent data issues or true anomalies.",
+                caption='Validate whether flagged rows represent data issues or true anomalies.',
                 dark_mode=dark_tables,
                 precision=4,
                 max_rows=300,
@@ -1541,38 +1540,36 @@ with tabs[5]:
 # 7. Modeling
 # =============================================================================
 with tabs[6]:
-    st.subheader("7. Modeling")
-
     if not numeric and not categorical:
-        st.warning("Modeling requires at least one numeric or categorical column.")
+        st.warning('Modeling requires at least one numeric or categorical column.')
     else:
         task = st.radio(
-            "Task type",
-            ["Regression", "Classification"],
+            'Task type',
+            ['Regression', 'Classification'],
             index=0,
             horizontal=True,
-            key="mdl_task",
+            key='mdl_task',
         )
         test_size = st.slider(
-            "Test size", 0.10, 0.50, 0.20, 0.05, key="mdl_test_size"
+            'Test size', 0.10, 0.50, 0.20, 0.05, key='mdl_test_size'
         )
         rs = st.number_input(
-            "Random state", value=42, step=1, key="mdl_rs"
+            'Random state', value=42, step=1, key='mdl_rs'
         )
 
-        if task == "Regression":
+        if task == 'Regression':
             if not numeric:
-                st.warning("Regression requires numeric target and features.")
+                st.warning('Regression requires numeric target and features.')
             else:
                 target = st.selectbox(
-                    "Numeric target",
+                    'Numeric target',
                     numeric,
                     index=(
                         numeric.index(numeric_default[0])
                         if numeric_default and numeric_default[0] in numeric
                         else 0
                     ),
-                    key="mdl_reg_target",
+                    key='mdl_reg_target',
                 )
                 feat_opts = [c for c in numeric if c != target]
                 default_reg_feats = [
@@ -1582,18 +1579,18 @@ with tabs[6]:
                     default_reg_feats = feat_opts[: min(10, len(feat_opts))]
 
                 features = st.multiselect(
-                    "Numeric features",
+                    'Numeric features',
                     feat_opts,
                     default=default_reg_feats,
-                    key="mdl_reg_features",
+                    key='mdl_reg_features',
                 )
 
                 if not features:
-                    st.info("Select at least one numeric feature.")
+                    st.info('Select at least one numeric feature.')
                 else:
-                    X = df[features].apply(pd.to_numeric, errors="coerce")
+                    X = df[features].apply(pd.to_numeric, errors='coerce')
                     X = X.fillna(X.median(numeric_only=True))
-                    y = pd.to_numeric(df[target], errors="coerce").values
+                    y = pd.to_numeric(df[target], errors='coerce').values
 
                     X_train, X_test, y_train, y_test = train_test_split(
                         X.values,
@@ -1604,29 +1601,29 @@ with tabs[6]:
                     )
 
                     models = {
-                        "LinearRegression": LinearRegression(),
-                        "Ridge": Ridge(),
-                        "Lasso": Lasso(),
-                        "ElasticNet": ElasticNet(),
-                        "RandomForestRegressor": RandomForestRegressor(
+                        'LinearRegression': LinearRegression(),
+                        'Ridge': Ridge(),
+                        'Lasso': Lasso(),
+                        'ElasticNet': ElasticNet(),
+                        'RandomForestRegressor': RandomForestRegressor(
                             random_state=42
                         ),
                     }
                     sel_models = st.multiselect(
-                        "Models to train",
+                        'Models to train',
                         list(models.keys()),
                         default=[
-                            "LinearRegression",
-                            "Ridge",
-                            "RandomForestRegressor",
+                            'LinearRegression',
+                            'Ridge',
+                            'RandomForestRegressor',
                         ],
-                        key="mdl_reg_models",
+                        key='mdl_reg_models',
                     )
 
                     if st.button(
-                        "Train regression models",
-                        type="primary",
-                        key="mdl_reg_train",
+                        'Train regression models',
+                        type='primary',
+                        key='mdl_reg_train',
                     ):
                         results: List[Dict[str, Any]] = []
                         fitted: Dict[str, Any] = {}
@@ -1638,27 +1635,27 @@ with tabs[6]:
 
                             results.append(
                                 {
-                                    "model": name,
-                                    "rmse": float(
+                                    'model': name,
+                                    'rmse': float(
                                         mean_squared_error(
                                             y_test, preds, squared=False
                                         )
                                     ),
-                                    "mae": float(
+                                    'mae': float(
                                         mean_absolute_error(y_test, preds)
                                     ),
-                                    "r2": float(r2_score(y_test, preds)),
+                                    'r2': float(r2_score(y_test, preds)),
                                 }
                             )
                             fitted[name] = (m, preds, y_test)
 
                         res_df = pd.DataFrame(results).sort_values(
-                            "rmse", ascending=True
+                            'rmse', ascending=True
                         )
                         render_table(
                             res_df,
-                            title="Regression model comparison",
-                            caption="Lower RMSE/MAE and higher R² indicate better performance.",
+                            title='Regression model comparison',
+                            caption='Lower RMSE/MAE and higher R² indicate better performance.',
                             dark_mode=dark_tables,
                             precision=6,
                         )
@@ -1671,30 +1668,30 @@ with tabs[6]:
                         ax.plot(
                             [best_y.min(), best_y.max()],
                             [best_y.min(), best_y.max()],
-                            "r--",
+                            'r--',
                             linewidth=1.2,
                         )
-                        ax.set_xlabel("Actual")
-                        ax.set_ylabel("Predicted")
-                        ax.set_title(f"Actual vs Predicted — {best_name}")
+                        ax.set_xlabel('Actual')
+                        ax.set_ylabel('Predicted')
+                        ax.set_title(f'Actual vs Predicted — {best_name}')
                         st.pyplot(fig)
                         st.caption(
-                            "Points near the diagonal indicate accurate predictions; systematic curvature suggests mis-specification."
+                            'Points near the diagonal indicate accurate predictions; systematic curvature suggests mis-specification.'
                         )
 
-                        st.session_state["last_model_payload"] = {
-                            "task": "Regression",
-                            "name": best_name,
-                            "model": best_model,
-                            "X_test": X_test,
-                            "y_test": best_y,
-                            "preds": best_preds,
+                        st.session_state['last_model_payload'] = {
+                            'task': 'Regression',
+                            'name': best_name,
+                            'model': best_model,
+                            'X_test': X_test,
+                            'y_test': best_y,
+                            'preds': best_preds,
                         }
 
         else:  # Classification
             if not categorical or not numeric:
                 st.warning(
-                    "Classification requires a categorical target and numeric features."
+                    'Classification requires a categorical target and numeric features.'
                 )
             else:
                 default_target_idx = 0
@@ -1704,26 +1701,26 @@ with tabs[6]:
                         default_target_idx = categorical.index(first_default)
 
                 target = st.selectbox(
-                    "Categorical target",
+                    'Categorical target',
                     categorical,
                     index=default_target_idx,
-                    key="mdl_clf_target",
+                    key='mdl_clf_target',
                 )
 
                 default_clf_feats = numeric_default[: min(10, len(numeric_default))]
                 features = st.multiselect(
-                    "Numeric features",
+                    'Numeric features',
                     numeric,
                     default=default_clf_feats,
-                    key="mdl_clf_features",
+                    key='mdl_clf_features',
                 )
 
                 if not features:
-                    st.info("Select at least one numeric feature.")
+                    st.info('Select at least one numeric feature.')
                 else:
-                    X = df[features].apply(pd.to_numeric, errors="coerce")
+                    X = df[features].apply(pd.to_numeric, errors='coerce')
                     X = X.fillna(X.median(numeric_only=True))
-                    y_raw = df[target].astype(str).fillna("(missing)")
+                    y_raw = df[target].astype(str).fillna('(missing)')
                     le = LabelEncoder()
                     y = le.fit_transform(y_raw.values)
 
@@ -1738,27 +1735,27 @@ with tabs[6]:
                     )
 
                     models = {
-                        "LogisticRegression": LogisticRegression(
+                        'LogisticRegression': LogisticRegression(
                             max_iter=4000, random_state=42
                         ),
-                        "RandomForestClassifier": RandomForestClassifier(
+                        'RandomForestClassifier': RandomForestClassifier(
                             random_state=42
                         ),
                     }
                     sel_models = st.multiselect(
-                        "Models to train",
+                        'Models to train',
                         list(models.keys()),
                         default=[
-                            "LogisticRegression",
-                            "RandomForestClassifier",
+                            'LogisticRegression',
+                            'RandomForestClassifier',
                         ],
                         key="mdl_clf_models",
                     )
 
                     if st.button(
-                        "Train classification models",
-                        type="primary",
-                        key="mdl_clf_train",
+                        'Train classification models',
+                        type='primary',
+                        key='mdl_clf_train',
                     ):
                         results: List[Dict[str, Any]] = []
                         fitted: Dict[str, Any] = {}
@@ -1770,7 +1767,7 @@ with tabs[6]:
                             acc = float(accuracy_score(y_test, preds))
 
                             auc = np.nan
-                            if hasattr(m, "predict_proba") and len(
+                            if hasattr(m, 'predict_proba') and len(
                                 np.unique(y_test)
                             ) == 2:
                                 p1 = m.predict_proba(X_test)[:, 1]
@@ -1780,17 +1777,17 @@ with tabs[6]:
                                     auc = np.nan
 
                             results.append(
-                                {"model": name, "accuracy": acc, "auc": auc}
+                                {'model': name, 'accuracy': acc, 'auc': auc}
                             )
                             fitted[name] = (m, preds, y_test)
 
                         res_df = pd.DataFrame(results).sort_values(
-                            "accuracy", ascending=False
+                            'accuracy', ascending=False
                         )
                         render_table(
                             res_df,
-                            title="Classification model comparison",
-                            caption="Higher accuracy and AUC (binary) indicate better performance.",
+                            title='Classification model comparison',
+                            caption='Higher accuracy and AUC (binary) indicate better performance.',
                             dark_mode=dark_tables,
                             precision=6,
                         )
@@ -1804,70 +1801,68 @@ with tabs[6]:
                             cm,
                             annot=True,
                             fmt="d",
-                            cmap="Blues",
+                            cmap='Blues',
                             cbar=False,
                             linewidths=0.4,
-                            linecolor="#0f172a",
-                            annot_kws={"size": 8},
+                            linecolor='#0f172a',
+                            annot_kws={'size': 8},
                             ax=ax,
                         )
-                        ax.set_title(f"Confusion Matrix — {best_name}")
-                        ax.set_xlabel("Predicted")
-                        ax.set_ylabel("Actual")
+                        ax.set_title(f'Confusion Matrix — {best_name}')
+                        ax.set_xlabel('Predicted')
+                        ax.set_ylabel('Actual')
                         st.pyplot(fig)
                         st.caption(
-                            "Diagonal cells are correct classifications; off-diagonals are misclassifications."
+                            'Diagonal cells are correct classifications; off-diagonals are misclassifications.'
                         )
 
-                        st.session_state["last_model_payload"] = {
-                            "task": "Classification",
-                            "name": best_name,
-                            "model": best_model,
-                            "X_test": X_test,
-                            "y_test": best_y,
-                            "preds": best_preds,
-                            "labels": le.classes_.tolist(),
+                        st.session_state['last_model_payload'] = {
+                            'task': 'Classification',
+                            'name': best_name,
+                            'model': best_model,
+                            'X_test': X_test,
+                            'y_test': best_y,
+                            'preds': best_preds,
+                            'labels': le.classes_.tolist(),
                         }
 
 # =============================================================================
 # 8. Diagnostics
 # =============================================================================
 with tabs[7]:
-    st.subheader("8. Diagnostics")
-
-    payload = st.session_state.get("last_model_payload")
+    payload = st.session_state.get('last_model_payload')
     if not payload:
-        st.info("Train a model in the Modeling tab to see diagnostics.")
+        st.info('Train a model in the Modeling tab to see diagnostics.')
     else:
-        task = payload["task"]
-        name = payload["name"]
-        model = payload["model"]
-        X_test = payload["X_test"]
-        y_test = payload["y_test"]
-        preds = payload["preds"]
+        task = payload['task']
+        name = payload['name']
+        model = payload['model']
+        X_test = payload['X_test']
+        y_test = payload['y_test']
+        preds = payload['preds']
 
-        st.markdown(f"### Best Model: {name} ({task})")
+        st.markdown(f'##### Best Model: {name} ({task})')
 
-        if task == "Regression":
+        if task == 'Regression':
             resid = y_test - preds
             metrics_df = pd.DataFrame(
                 [
                     {
-                        "rmse": float(
+                        'rmse': float(
                             mean_squared_error(y_test, preds, squared=False)
                         ),
-                        "mae": float(mean_absolute_error(y_test, preds)),
-                        "r2": float(r2_score(y_test, preds)),
-                        "resid_mean": float(np.mean(resid)),
-                        "resid_std": float(np.std(resid)),
+                        'mae': float(mean_absolute_error(y_test, preds)),
+                        'r2': float(r2_score(y_test, preds)),
+                        'resid_mean': float(np.mean(resid)),
+                        'resid_std': float(np.std(resid)),
                     }
                 ]
             )
             render_table(
                 metrics_df,
                 caption=(
-                    "Residual diagnostics: residual mean near 0 and stable spread "
-                    "suggest less bias and more homoscedastic errors."
+                    'Residual diagnostics: residual mean near 0 and stable spread '
+                    'suggest less bias and more homoscedastic errors.'
                 ),
                 dark_mode=dark_tables,
                 precision=6,
@@ -1877,29 +1872,29 @@ with tabs[7]:
             ax.hist(
                 resid,
                 bins=40,
-                edgecolor="#020617",
+                edgecolor='#020617',
                 linewidth=0.6,
                 color=PALETTE[3],
                 alpha=0.9,
             )
-            ax.set_title("Residual Distribution")
-            ax.set_xlabel("Residual")
-            ax.set_ylabel("Count")
+            ax.set_title('Residual Distribution')
+            ax.set_xlabel('Residual')
+            ax.set_ylabel('Count')
             ax.grid(True, alpha=0.25)
             st.pyplot(fig)
             st.caption(
-                "A symmetric, centered residual distribution indicates fewer systematic errors."
+                'A symmetric, centered residual distribution indicates fewer systematic errors.'
             )
 
             fig2, ax2 = plt.subplots(figsize=(8, 4))
             styled_scatter(ax2, preds, resid, series_index=4, size=30)
-            ax2.axhline(0, linestyle="--", color="#f97316", linewidth=1.2)
-            ax2.set_title("Residuals vs Predicted")
-            ax2.set_xlabel("Predicted")
-            ax2.set_ylabel("Residual")
+            ax2.axhline(0, linestyle='--', color='#f97316', linewidth=1.2)
+            ax2.set_title('Residuals vs Predicted')
+            ax2.set_xlabel('Predicted')
+            ax2.set_ylabel('Residual')
             st.pyplot(fig2)
             st.caption(
-                "Patterns (e.g., funnel shapes) indicate heteroscedasticity; non-random structure suggests mis-specification."
+                'Patterns (e.g., funnel shapes) indicate heteroscedasticity; non-random structure suggests mis-specification.'
             )
 
         else:  # Classification
@@ -1910,10 +1905,10 @@ with tabs[7]:
             rep_df = pd.DataFrame(rep).T
             render_table(
                 rep_df,
-                title="Classification Report",
+                title='Classification Report',
                 caption=(
-                    "Precision, recall, and F1 scores by class highlight which labels "
-                    "the model struggles with."
+                    'Precision, recall, and F1 scores by class highlight which labels '
+                    'the model struggles with.'
                 ),
                 dark_mode=dark_tables,
                 precision=4,
@@ -1924,23 +1919,23 @@ with tabs[7]:
             sns.heatmap(
                 cm,
                 annot=True,
-                fmt="d",
-                cmap="Blues",
+                fmt='d',
+                cmap='Blues',
                 cbar=False,
                 linewidths=0.4,
-                linecolor="#0f172a",
-                annot_kws={"size": 8},
+                linecolor='#0f172a',
+                annot_kws={'size': 8},
                 ax=ax,
             )
-            ax.set_title("Confusion Matrix")
-            ax.set_xlabel("Predicted")
-            ax.set_ylabel("Actual")
+            ax.set_title('Confusion Matrix')
+            ax.set_xlabel('Predicted')
+            ax.set_ylabel('Actual')
             st.pyplot(fig)
             st.caption(
-                "Diagonal elements are correct classifications; off-diagonal entries indicate confusion between classes."
+                'Diagonal elements are correct classifications; off-diagonal entries indicate confusion between classes.'
             )
 
-            if hasattr(model, "predict_proba") and len(np.unique(y_test)) == 2:
+            if hasattr(model, 'predict_proba') and len(np.unique(y_test)) == 2:
                 p1 = model.predict_proba(X_test)[:, 1]
                 fpr, tpr, _ = roc_curve(y_test, p1)
                 auc = float(roc_auc_score(y_test, p1))
@@ -1949,25 +1944,25 @@ with tabs[7]:
                 ax2.plot(
                     fpr,
                     tpr,
-                    label=f"ROC (AUC={auc:.3f})",
+                    label=f'ROC (AUC={auc:.3f})',
                     linewidth=1.4,
                     color=PALETTE[5],
                 )
                 ax2.plot(
                     [0, 1],
                     [0, 1],
-                    "r--",
+                    'r--',
                     linewidth=1.0,
-                    label="Random",
+                    label='Random',
                 )
-                ax2.set_xlabel("False Positive Rate")
-                ax2.set_ylabel("True Positive Rate")
-                ax2.set_title("ROC Curve")
+                ax2.set_xlabel('False Positive Rate')
+                ax2.set_ylabel('True Positive Rate')
+                ax2.set_title('ROC Curve')
                 ax2.grid(True, alpha=0.25)
                 ax2.legend()
                 st.pyplot(fig2)
                 st.caption(
-                    "Higher curves and AUC closer to 1 indicate stronger ranking performance."
+                    'Higher curves and AUC closer to 1 indicate stronger ranking performance.'
                 )
 
                 prec, rec, _ = precision_recall_curve(y_test, p1)
@@ -1978,16 +1973,14 @@ with tabs[7]:
                     linewidth=1.4,
                     color=PALETTE[6],
                 )
-                ax3.set_xlabel("Recall")
-                ax3.set_ylabel("Precision")
-                ax3.set_title("Precision–Recall Curve")
+                ax3.set_xlabel('Recall')
+                ax3.set_ylabel('Precision')
+                ax3.set_title('Precision–Recall Curve')
                 ax3.grid(True, alpha=0.25)
                 st.pyplot(fig3)
                 st.caption(
-                    "Precision–Recall curves are especially informative for imbalanced classes."
+                    'Precision–Recall curves are especially informative for imbalanced classes.'
                 )
 
-st.markdown("---")
-st.caption(
-    "Sake"
-)
+st.markdown('---')
+st.caption( ' Sake' )

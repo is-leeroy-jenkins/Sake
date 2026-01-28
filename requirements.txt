@@ -1,4 +1,3 @@
-FreeSimpleGUI
 typing
 openai
 groq
@@ -6,7 +5,6 @@ requests
 Pygments
 pyodbc
 pandas
-fitz
 matplotlib
 pillow
 openpyxl
