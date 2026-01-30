@@ -52,7 +52,7 @@ from sklearn.metrics import (
 # -----------------------------------------------------------------------------
 APP_ROOT = Path(__file__).parent.resolve()
 FALLBACK_PATH = APP_ROOT / "data" / "Account Balances.xlsx"
-LOGO = r'resources/sake_logo.png'
+LOGO = r'resources/sake_logo.ico'
 FAVICON = r'resources/assets/favicon.ico'
 BLUE_DIVIDER = "<div style='height:2px;align:left;background:#0078FC;margin:6px 0 10px 0;'></div>"
 
