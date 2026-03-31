@@ -777,8 +777,8 @@ with tabs[ 1 ]:
 			styled_scatter( ax, np.asarray( osm ), np.asarray( osr ), series_index=i, size=30, )
 			x_fit = np.array( [ np.min( osm ), np.max( osm ) ] )
 			y_fit = slope * x_fit + intercept
-			ax.plot( x_fit, y_fit, linestyle="--", linewidth=1.2, color="#f97316",
-				label=f"Normal fit (r={r:.3f})", )
+			ax.plot( x_fit, y_fit, linestyle='--', linewidth=1.2, color='#f97316',
+				label=f'Normal fit (r={r:.3f})', )
 			
 			ax.set_title( f"Q–Q Plot: {col}" )
 			ax.set_xlabel( "Theoretical quantiles" )
