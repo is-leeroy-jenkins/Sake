@@ -770,13 +770,8 @@ with tabs[ 1 ]:
 			
 			# Use styled_scatter for Q-Q points and explicit reference line.
 			(osm, osr), (slope, intercept, r) = stats.probplot( v, dist="norm" )
-			
 			fig, ax = plt.subplots( figsize=(6, 4) )
-			
-			# Scatter the ordered sample vs theoretical quantiles
 			styled_scatter( ax, np.asarray( osm ), np.asarray( osr ), series_index=i, size=30, )
-			
-			# Reference normal line
 			x_fit = np.array( [ np.min( osm ), np.max( osm ) ] )
 			y_fit = slope * x_fit + intercept
 			ax.plot( x_fit, y_fit, linestyle="--", linewidth=1.2, color="#f97316",
