@@ -688,14 +688,12 @@ with tabs[ 0 ]:
 	
 	st.subheader( 'Preview' )
 	st.dataframe( df.head( preview_rows ), use_container_width=True, height=420 )
-	
+	st.divider( )
 	st.subheader( 'Feature Quality' )
 	fq = feature_quality( df )
-	render_table( fq, caption=( 'Completeness, cardinality, variance/entropy help identify ID-like columns, '
-				'sparse features, and candidates for encoding or removal.' ), 
-		dark_mode=dark_tables, precision=4, )
+	st.data_editor( fq )
 	
-	st.st.subheader( 'Schema Summary' )
+	st.subheader( 'Schema Summary' )
 	schema = pd.DataFrame(
 		{
 				'column': df.columns,
@@ -705,12 +703,8 @@ with tabs[ 0 ]:
 				'unique': [ int( df[ c ].nunique( dropna=True ) ) for c in df.columns ],
 		}
 	).sort_values( [ 'dtype', 'missing', 'unique' ], ascending=[ True, True, False ] )
-	render_table(
-		schema,
-		caption='Check inferred dtypes and missingness before deeper analysis.',
-		dark_mode=dark_tables,
-		precision=0,
-	)
+	
+	st.data_editor( schema )
 
 # =============================================================================
 # Descriptive Statistics
@@ -719,14 +713,12 @@ with tabs[ 1 ]:
 	if not numeric:
 		st.warning( 'No numeric columns detected.' )
 	else:
-		st.st.subheader( 'Numeric Profile' )
+		st.subheader( 'Numeric Profile' )
 		
 		prof = descriptive_profile( df, numeric )
-		render_table( prof, caption=(
-				'Extended distribution summary including tails, skewness, kurtosis, '
-				'and simple outlier rates.' ), dark_mode=dark_tables, precision=4, )
+		st.data_editor( prof, )
 		
-		st.st.subheader( 'Distributions by Feature' )
+		st.subheader( 'Distributions by Feature' )
 		default_hist = numeric_default[ : min( 6, len( numeric_default ) ) ]
 		num_sel = st.multiselect( 'Numeric columns for histograms/boxplots', numeric,
 			default=default_hist, key="desc_num_sel", )
@@ -913,12 +905,10 @@ with tabs[ 2 ]:
 										'median_B': float( np.median( b ) ),
 										'U': float( u_stat ),
 										'p_value': float( p_val ),
-								}
-							)
-							caption = (
-									'Mann–Whitney compares distributions without assuming '
-									'normality.'
-							)
+								} )
+							
+							caption = ( 'Mann–Whitney compares distributions without assuming '
+									'normality.' )
 						
 						render_table(
 							pd.DataFrame( rows ),
