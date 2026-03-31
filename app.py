@@ -576,15 +576,35 @@ def categorical_default_candidates( df: pd.DataFrame, cat_cols: List[str] ) -> L
         defaults = cat_cols[:]
     return defaults
 
+def style_subheaders( ) -> None:
+	"""
+	
+		Purpose:
+		_________
+		Sets the style of subheaders in the main UI
+		
+	"""
+	st.markdown(
+		"""
+		<style>
+		div[data-testid="stMarkdownContainer"] h2,
+		div[data-testid="stMarkdownContainer"] h3,
+		div[data-testid="stChatMessage"] div[data-testid="stMarkdownContainer"] h2,
+		div[data-testid="stChatMessage"] div[data-testid="stMarkdownContainer"] h3 {
+			color: rgb(0, 120, 252) !important;
+		}
+		</style>
+		""",
+		unsafe_allow_html=True,
+	)
+	
 # -----------------------------------------------------------------------------
 # Data loading  
 # -----------------------------------------------------------------------------
+style_subheaders( )
 st.sidebar.header( '📁 Data Input' )
-use_fallback = st.sidebar.checkbox( 'Load fallback data', value=True,
-    key='use_fallback', )
-
-uploaded = st.sidebar.file_uploader( 'Upload File A (Excel)', type=['xlsx', 'xls'],
-    key='upload_file', )
+use_fallback = st.sidebar.checkbox( 'Load fallback data', value=True, key='use_fallback', )
+uploaded = st.sidebar.file_uploader( 'Upload File', type=['xlsx', 'xls'], key='upload_file', )
 
 df: Optional[pd.DataFrame] = None
 data_source: str = ""
@@ -636,7 +656,7 @@ categorical = categorical_raw
 
 # -----------------------------------------------------------------------------
 # Global display controls
-# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------	
 st.sidebar.header( '⚙️ Display Controls' )
 preview_rows = st.sidebar.slider( 'Preview rows', 10, 300, 50, 10, key='preview_rows' )
 dark_tables = st.sidebar.checkbox( 'Use dark tables', value=True, key='dark_tables' )
@@ -652,21 +672,9 @@ else:
 # -----------------------------------------------------------------------------
 # Layout
 # -----------------------------------------------------------------------------
-st.markdown( '#### Sake' )
-st.caption( 'File A / Account Balances' )
-
-tabs = st.tabs(
-	[
-			'Data Overview',
-			'Descriptive Statistics',
-			'Inferential Statistics',
-			'Feature Analysis',
-			'Feature Engineering',
-			'Anomaly Detection',
-			'Modeling',
-			'Diagnostics',
-	]
-)
+st.markdown( '## Sake' )
+st.caption( 'Account Balances' )
+tabs = st.tabs( cfg.TABS )
 
 # =============================================================================
 # 1. Data Overview
@@ -678,22 +686,16 @@ with tabs[ 0 ]:
 	c3.metric( 'Numeric', len( numeric ) )
 	c4.metric( 'Categorical', len( categorical ) )
 	
-	st.markdown( '##### Preview' )
+	st.subheader( 'Preview' )
 	st.dataframe( df.head( preview_rows ), use_container_width=True, height=420 )
 	
-	st.markdown( '##### Feature Quality' )
+	st.subheader( 'Feature Quality' )
 	fq = feature_quality( df )
-	render_table(
-		fq,
-		caption=(
-				'Completeness, cardinality, variance/entropy help identify ID-like columns, '
-				'sparse features, and candidates for encoding or removal.'
-		),
-		dark_mode=dark_tables,
-		precision=4,
-	)
+	render_table( fq, caption=( 'Completeness, cardinality, variance/entropy help identify ID-like columns, '
+				'sparse features, and candidates for encoding or removal.' ), 
+		dark_mode=dark_tables, precision=4, )
 	
-	st.markdown( '### Schema Summary' )
+	st.st.subheader( 'Schema Summary' )
 	schema = pd.DataFrame(
 		{
 				'column': df.columns,
@@ -717,14 +719,14 @@ with tabs[ 1 ]:
 	if not numeric:
 		st.warning( 'No numeric columns detected.' )
 	else:
-		st.markdown( '### Numeric Profile' )
+		st.st.subheader( 'Numeric Profile' )
 		
 		prof = descriptive_profile( df, numeric )
 		render_table( prof, caption=(
 				'Extended distribution summary including tails, skewness, kurtosis, '
 				'and simple outlier rates.' ), dark_mode=dark_tables, precision=4, )
 		
-		st.markdown( '### Distributions by Feature' )
+		st.st.subheader( 'Distributions by Feature' )
 		default_hist = numeric_default[ : min( 6, len( numeric_default ) ) ]
 		num_sel = st.multiselect( 'Numeric columns for histograms/boxplots', numeric,
 			default=default_hist, key="desc_num_sel", )
@@ -743,10 +745,8 @@ with tabs[ 1 ]:
 			ax.set_ylabel( 'Count' )
 			ax.grid( True, alpha=0.25 )
 			st.pyplot( fig )
-			st.caption(
-				f'Histogram of {col}: look for heavy tails, multiple modes, '
-				'or spikes at specific values.'
-			)
+			st.caption( f'Histogram of {col}: look for heavy tails, multiple modes, '
+				'or spikes at specific values.' )
 			
 			fig2, ax2 = plt.subplots( figsize=(6, 3) )
 			bp = ax2.boxplot( v, vert=False, showfliers=True, patch_artist=True,
@@ -764,12 +764,10 @@ with tabs[ 1 ]:
 			ax2.set_xlabel( 'Value' )
 			ax2.grid( True, axis='x', alpha=0.25 )
 			st.pyplot( fig2 )
-			st.caption(
-				f'Boxplot of {col}: outliers beyond whiskers may represent '
-				'data errors or genuinely extreme observations.'
-			)
+			st.caption( f'Boxplot of {col}: outliers beyond whiskers may represent '
+				'data errors or genuinely extreme observations.' )
 		
-		st.markdown( '##### Normality Diagnostics (Q–Q Plots)' )
+		st.subheader( 'Normality Diagnostics (Q–Q Plots)' )
 		default_qq = numeric_default[ : min( 3, len( numeric_default ) ) ]
 		qq_sel = st.multiselect( 'Numeric columns for Q–Q plots', numeric, default=default_qq,
 			key='desc_qq_sel', )
@@ -797,11 +795,8 @@ with tabs[ 1 ]:
 			ax.set_ylabel( "Ordered sample values" )
 			ax.legend( fontsize=8 )
 			st.pyplot( fig )
-			
-			st.caption(
-				f"For {col}, points hugging the dashed line suggest approximate normality; "
-				"systematic curvature or heavy tails indicate deviation."
-			)
+			st.caption( f"For {col}, points hugging the dashed line suggest approximate normality; "
+				"systematic curvature or heavy tails indicate deviation." )
 
 # =============================================================================
 # Inferential Statistics
@@ -810,7 +805,7 @@ with tabs[ 2 ]:
 	if not numeric:
 		st.warning( 'Inferential statistics require numeric measures.' )
 	else:
-		st.markdown( '##### Correlation Analysis' )
+		st.subheader( 'Correlation Analysis' )
 		default_corr = numeric_default[ : min( 10, len( numeric_default ) ) ]
 		corr_cols = st.multiselect( 'Numeric columns for correlation', numeric, default=default_corr,
 			key='inf_corr_cols', )
@@ -826,27 +821,20 @@ with tabs[ 2 ]:
 				cbar_kws={ 'shrink': 0.8 }, annot_kws={ 'size': 7 }, ax=ax, )
 			ax.set_title( f'{corr_method.title( )} Correlation Heatmap' )
 			st.pyplot( fig )
-			st.caption(
-				'Warm cells indicate positive association; cool cells indicate negative '
+			st.caption( 'Warm cells indicate positive association; cool cells indicate negative '
 				'association. '
-				'Magnitudes near ±1 suggest strong linear/monotonic relationships.'
-			)
+				'Magnitudes near ±1 suggest strong linear/monotonic relationships.' )
 			
 			render_table( corr_mat.reset_index( ).rename( columns={ 'index': 'feature' } ),
 				title='Correlation matrix', dark_mode=dark_tables, precision=4 )
 			render_table( p_mat.reset_index( ).rename( columns={ 'index': 'feature' } ),
 				title='Correlation p-values', dark_mode=dark_tables, precision=6, )
 		
-		st.markdown( '##### Confidence Intervals for Means' )
+		st.subheader( 'Confidence Intervals for Means' )
 		default_ci = numeric_default[ : min( 8, len( numeric_default ) ) ]
-		ci_cols = st.multiselect(
-			'Numeric columns for CI',
-			numeric,
-			default=default_ci,
-			key='inf_ci_cols',
-		)
+		ci_cols = st.multiselect( 'Numeric columns for CI', numeric, default=default_ci,
+			key='inf_ci_cols', )
 		conf = st.slider( 'Confidence level', 0.80, 0.99, 0.95, 0.01, key='inf_ci_conf' )
-		
 		ci_rows: List[ Dict[ str, Any ] ] = [ ]
 		for col in ci_cols:
 			v = safe_numeric_series( df, col )
@@ -872,7 +860,7 @@ with tabs[ 2 ]:
 			caption='Confidence intervals quantify uncertainty around each mean estimate.',
 			dark_mode=dark_tables, precision=4, )
 		
-		st.markdown( '##### Two-Group Comparisons' )
+		st.subheader( 'Two-Group Comparisons' )
 		if categorical:
 			num_feature = st.selectbox( 'Numeric feature', numeric,
 				index=( numeric.index( numeric_default[ 0 ] )
@@ -882,28 +870,16 @@ with tabs[ 2 ]:
 				key='inf_group_col', )
 			group_vals = ( df[ group_col ].dropna( ).astype( str ).unique( ).tolist( ) )
 			if len( group_vals ) >= 2:
-				sel_groups = st.multiselect(
-					'Select exactly two groups',
-					options=group_vals,
-					default=group_vals[ :2 ],
-					key='inf_sel_groups',
-				)
-				test_kind = st.selectbox(
-					'Test type',
-					[ 'Two-sample t-test', 'Mann–Whitney U' ],
-					index=0,
-					key='inf_test_kind',
-				)
+				sel_groups = st.multiselect( 'Select exactly two groups', options=group_vals,
+					default=group_vals[ :2 ], key='inf_sel_groups', )
+				test_kind = st.selectbox( 'Test type', [ 'Two-sample t-test', 'Mann–Whitney U' ],
+					index=0, key='inf_test_kind', )
 				
 				if len( sel_groups ) == 2:
-					a = pd.to_numeric(
-						df.loc[ df[ group_col ].astype( str ) == sel_groups[ 0 ], num_feature ],
-						errors='coerce',
-					).dropna( )
-					b = pd.to_numeric(
-						df.loc[ df[ group_col ].astype( str ) == sel_groups[ 1 ], num_feature ],
-						errors='coerce',
-					).dropna( )
+					a = pd.to_numeric( df.loc[ df[ group_col ].astype( str ) == sel_groups[ 0 ], num_feature ],
+						errors='coerce', ).dropna( )
+					b = pd.to_numeric( df.loc[ df[ group_col ].astype( str ) == sel_groups[ 1 ], num_feature ],
+						errors='coerce', ).dropna( )
 					
 					if a.size >= 2 and b.size >= 2:
 						rows: List[ Dict[ str, Any ] ] = [ ]
@@ -981,7 +957,7 @@ with tabs[ 3 ]:
 		if len( fa_cols ) >= 2:
 			X = df[ fa_cols ].apply( pd.to_numeric, errors='coerce' ).dropna( )
 			
-			st.markdown( '##### Correlation Heatmap' )
+			st.subheader( 'Correlation Heatmap' )
 			corr = X.corr( )
 			fig, ax = plt.subplots( figsize=(8, 6) )
 			sns.heatmap( corr, cmap='coolwarm', center=0, annot=True, fmt='.2f',
@@ -1015,7 +991,7 @@ with tabs[ 3 ]:
 			render_table( top_pairs, title='Top correlated feature pairs',
 				dark_mode=dark_tables, precision=4, )
 			
-			st.markdown( '##### PCA (Principal Component Analysis)' )
+			st.subheader( 'PCA (Principal Component Analysis)' )
 			X_scaled = StandardScaler( ).fit_transform( X.values )
 			n_comp = st.slider(
 				'Number of components', 2, min( 10, len( fa_cols ) ), 3, 1, key='fa_pca_n'
@@ -1045,7 +1021,7 @@ with tabs[ 3 ]:
 				st.pyplot( fig3 )
 				st.caption( 'Separated clusters in PCA space suggest meaningful latent groupings.' )
 			
-			st.markdown( '##### k-Means Clustering (PCA space)' )
+			st.subheader( 'k-Means Clustering (PCA space)' )
 			k = st.slider( 'Number of clusters (k)', 2, 12, 3, 1, key='fa_k' )
 			km = KMeans( n_clusters=k, n_init=10, random_state=42 )
 			labels = km.fit_predict( Z )
@@ -1169,7 +1145,7 @@ with tabs[ 4 ]:
 			else:
 				X_out = X_log.copy( )
 			
-			st.markdown( '##### Transformed Data Preview' )
+			st.subheader( 'Transformed Data Preview' )
 			render_table(
 				X_out.head( preview_rows ),
 				caption='Feature matrix after imputation, optional winsorization/log transform, '
@@ -1178,7 +1154,7 @@ with tabs[ 4 ]:
 				precision=4,
 			)
 			
-			st.markdown( '##### Before vs After (Summary Metrics)' )
+			st.subheader( 'Before vs After (Summary Metrics)' )
 			before = descriptive_profile( df, fe_cols )[
 				[ 'feature', 'mean', 'std', 'skew', 'kurtosis', 'outlier_iqr_pct' ]
 			]
@@ -1306,7 +1282,7 @@ with tabs[ 5 ]:
 						'flagged_pct': float( isof.mean( ) * 100.0 ),
 					} )
 			
-			st.markdown( '##### Detection Summary' )
+			st.subheader( 'Detection Summary' )
 			render_table( pd.DataFrame( summary ),
 				caption='Univariate rules flag extremes per feature; multivariate methods flag '
 				        'unusual combinations.', dark_mode=dark_tables, precision=4, )
@@ -1314,7 +1290,7 @@ with tabs[ 5 ]:
 			combined = flags.any( axis=1 ) if not flags.empty else pd.Series(
 				False, index=df.index )
 			flagged_rows = df.loc[ combined, ad_cols ]
-			st.markdown( '##### Flagged Rows (Any Method)' )
+			st.subheader( 'Flagged Rows (Any Method)' )
 			render_table( flagged_rows.head( 300 ),
 				caption='Validate whether flagged rows represent data issues or true anomalies.',
 				dark_mode=dark_tables, precision=4, max_rows=300, )
