@@ -686,6 +686,7 @@ with tabs[ 0 ]:
 	c3.metric( 'Numeric', len( numeric ) )
 	c4.metric( 'Categorical', len( categorical ) )
 	
+	st.divider( )
 	st.subheader( 'Preview' )
 	st.dataframe( df.head( preview_rows ), use_container_width=True, height=420 )
 	st.divider( )
@@ -693,6 +694,7 @@ with tabs[ 0 ]:
 	fq = feature_quality( df )
 	st.data_editor( fq )
 	
+	st.divider( )
 	st.subheader( 'Schema Summary' )
 	schema = pd.DataFrame(
 		{
@@ -713,6 +715,7 @@ with tabs[ 1 ]:
 	if not numeric:
 		st.warning( 'No numeric columns detected.' )
 	else:
+		st.divider( )
 		st.subheader( 'Numeric Profile' )
 		
 		prof = descriptive_profile( df, numeric )
@@ -941,7 +944,7 @@ with tabs[ 3 ]:
 		
 		if len( fa_cols ) >= 2:
 			X = df[ fa_cols ].apply( pd.to_numeric, errors='coerce' ).dropna( )
-			
+			st.divider( )
 			st.subheader( 'Correlation Heatmap' )
 			corr = X.corr( )
 			fig, ax = plt.subplots( figsize=(8, 6) )
