@@ -2,6 +2,9 @@
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake_project.png)
 - A modular machine learning framework for budget execution & data analysis built in Python with **Scikit**, **XGBoost**, **PyTorch**, and **TensorFlow**. Designed for rapid experimentation, visualization, and benchmarking of both **classification** and **regression** models, it provides a structured yet extensible workflow that’s equally useful for teaching, prototyping, and real-world application development.
 
+## Demo
+![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
+
 ## 🔬 Data Source
 - File A (Account Balances) published monthly by agencies on [USASpending](https://www.usaspending.gov/download_center/custom_account_data?about-the-data=file-a)
 - Required by the DATA Act.
@@ -64,7 +67,6 @@ Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
 [![Streamlit App](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://sake-py.streamlit.app/)
 
-![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-Py.gif)
 
 - This section describes how to clone the repository, install dependencies, and launch the **Sake**
 Streamlit application locally. 
