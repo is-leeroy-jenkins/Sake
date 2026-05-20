@@ -5,20 +5,23 @@
 ## Demo
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
 
-## 🔬 Data Source
-- File A (Account Balances) published monthly by agencies on [USASpending](https://www.usaspending.gov/download_center/custom_account_data?about-the-data=file-a)
-- Required by the DATA Act.
-- Pulled automatically from data in the [Governmentwide Treasury Account Symbol Adjusted Trial Balance System (GTAS)](https://www.fiscal.treasury.gov/gtas/)
-- Contains Budgetary resources, obligation, and outlay data for all the relevant [Treasury Account Symbols (TAS)](https://tfx.treasury.gov/taxonomy/term/10257) in a reporting agency.
-- It includes both award and non-award spending (grouped together), and crosswalks with the SF 133 report.
+## ☁️ Google (Cloud)
+<a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-## 🔄 Unified Evaluation Pipeline
-#### A single interface `train_and_evaluate()` to:
-- Train models
-- Cross-validate with nested k-fold
-- Generate predictions
-- Output evaluation plots & performance metrics
-- Store results & timings for meta-analysis
+![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-nb.gif)
+
+## 🧱 Databricks
+[![Databricks Notebook](https://img.shields.io/badge/Databricks%20Repo-Sake--Py-FF3621?logo=databricks&logoColor=white)](https://dbc-a0c21f80-7bb3.cloud.databricks.com/editor/notebooks/1460524320197777?o=7474645703081351)
+- A data engineering, analytics, and artificial intelligence collaborative workspace
+- Codebase
+
+
+  
+## 🕸️ Streamlit (Web)
+
+[![Streamlit App](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://sake-py.streamlit.app/)
+![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
 
 ## 🧪 How to Run
 
@@ -29,11 +32,6 @@ pip install -r requirements.txt
 jupyter notebook balances.ipynb
 ```
 
-## 🎯 Quickstart ( Colab )
-<a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
-<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-
-![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-nb.gif)
 
 ### Option A — Google Colab (no local setup)
 
@@ -62,11 +60,6 @@ jupyter notebook
 
 Open `ipynb/schedule-x.ipynb` and run cells top-to-bottom.
 
-
-## 🚀 Quickstart (Streamlit)
-
-[![Streamlit App](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://sake-py.streamlit.app/)
-![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
 
 - This section describes how to clone the repository, install dependencies, and launch the **Sake**
 Streamlit application locally. 
@@ -143,6 +136,21 @@ http://localhost:8501
 
 Open that address in your browser to access the app.
 
+
+## 🔬 Data Source
+- File A (Account Balances) published monthly by agencies on [USASpending](https://www.usaspending.gov/download_center/custom_account_data?about-the-data=file-a)
+- Required by the DATA Act.
+- Pulled automatically from data in the [Governmentwide Treasury Account Symbol Adjusted Trial Balance System (GTAS)](https://www.fiscal.treasury.gov/gtas/)
+- Contains Budgetary resources, obligation, and outlay data for all the relevant [Treasury Account Symbols (TAS)](https://tfx.treasury.gov/taxonomy/term/10257) in a reporting agency.
+- It includes both award and non-award spending (grouped together), and crosswalks with the SF 133 report.
+
+## 🔄 Unified Evaluation Pipeline
+#### A single interface `train_and_evaluate()` to:
+- Train models
+- Cross-validate with nested k-fold
+- Generate predictions
+- Output evaluation plots & performance metrics
+- Store results & timings for meta-analysis
 
 
 ### 📊 Using the Application
