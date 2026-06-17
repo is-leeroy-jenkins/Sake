@@ -1,4 +1,6 @@
-# User Guide
+![](../images/sake-workflows.png)
+
+___
 
 ## 🧭 Purpose
 

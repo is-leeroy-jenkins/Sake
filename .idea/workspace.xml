@@ -5,37 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efb31d37-191c-4db5-b3b4-8d2f7586aaf7" name="Changes" comment="update;">
-      <change afterPath="$PROJECT_DIR$/docs/api/app.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/api/data.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/api/evaluation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/api/features.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/api/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/api/models.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/api/statistics.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/api/utilities.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/api/visualization.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/architecture.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/data-sources.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/development.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/model-evaluation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/classification.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/data-loading.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/data-overview.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/descriptive-statistics.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/feature-engineering.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/inferential-statistics.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/installation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/regression.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/streamlit-app.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/user-guide/visualization.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booger.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/booger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minion.py" beforeDir="false" afterPath="$PROJECT_DIR$/minion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/models.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/user-guide/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/user-guide/index.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +93,7 @@
       <workItem from="1774982832439" duration="6796000" />
       <workItem from="1775474527286" duration="923000" />
       <workItem from="1775476125976" duration="662000" />
-      <workItem from="1781675659647" duration="2745000" />
+      <workItem from="1781675659647" duration="2859000" />
     </task>
     <task id="LOCAL-00001" summary="update;">
       <option name="closed" value="true" />
@@ -205,7 +175,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775476194639</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update;">
+      <option name="closed" value="true" />
+      <created>1781678584692</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1781678584693</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update;">
+      <option name="closed" value="true" />
+      <created>1781678641812</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1781678641812</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
