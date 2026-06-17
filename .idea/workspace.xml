@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efb31d37-191c-4db5-b3b4-8d2f7586aaf7" name="Changes" comment="update;" />
+    <list default="true" id="efb31d37-191c-4db5-b3b4-8d2f7586aaf7" name="Changes" comment="update;">
+      <change afterPath="$PROJECT_DIR$/docs/api/app.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/api/data.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/api/evaluation.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/api/features.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/api/index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/api/models.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/api/statistics.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/api/utilities.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/api/visualization.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/architecture.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/data-sources.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/development.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/model-evaluation.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/classification.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/data-loading.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/data-overview.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/descriptive-statistics.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/feature-engineering.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/inferential-statistics.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/installation.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/regression.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/streamlit-app.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/user-guide/visualization.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booger.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/booger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minion.py" beforeDir="false" afterPath="$PROJECT_DIR$/minion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/models.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +69,9 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="3BirV1vHiFLhWyvMkx1K5mrKHzB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="foldersAlwaysOnTop" value="false" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -44,25 +79,36 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "last_opened_file_path": "C:/Users/terry/source/repos/Sake/docs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\terry\source\repos\Sake\docs" />
+      <recent name="C:\Users\terry\source\repos\Sake\docs\api" />
+      <recent name="C:\Users\terry\source\repos\Sake\docs\user-guide" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\terry\source\repos\Sake\notebooks" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-PY-252.28539.27" />
-        <option value="bundled-python-sdk-07523f343e4f-968fe969f28a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.28539.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-PY-252.28539.58" />
+        <option value="bundled-python-sdk-3d8931ec2368-968fe969f28a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.28539.58" />
       </set>
     </attachedChunks>
   </component>
@@ -77,6 +123,7 @@
       <workItem from="1774982832439" duration="6796000" />
       <workItem from="1775474527286" duration="923000" />
       <workItem from="1775476125976" duration="662000" />
+      <workItem from="1781675659647" duration="2745000" />
     </task>
     <task id="LOCAL-00001" summary="update;">
       <option name="closed" value="true" />

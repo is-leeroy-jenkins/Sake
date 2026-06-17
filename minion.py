@@ -42,7 +42,7 @@
   ******************************************************************************************
   '''
 import subprocess as sp
-from booger import *
+from notebooks.booger import *
 from static import Client
 
 class App( ):
