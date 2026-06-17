@@ -9,6 +9,8 @@ repo_name: is-leeroy-jenkins/Sake
 theme:
   name: material
   language: en
+  logo: images/sake-logo.png
+  favicon: images/favicon.ico
   features:
     - navigation.instant
     - navigation.tracking
