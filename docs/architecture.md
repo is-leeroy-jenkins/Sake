@@ -1,4 +1,6 @@
 # Sake Architecture
+![](./images/sake-architecture.png)
+___
 
 Sake organizes budget execution analytics into a repeatable workflow for data loading, statistical review, feature preparation, model training, evaluation, and visualization. The architecture separates user-facing interaction from analytical processing so that notebooks, Streamlit pages, and reusable Python modules can share the same core workflow.
 
