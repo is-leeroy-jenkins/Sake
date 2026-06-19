@@ -9,24 +9,40 @@ A modular machine learning framework for budget execution & data analysis built 
 
 ## 🎥 Demo
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
+___
 
-## ☁️ Google (Cloud)
+## 🧊 Azure
+
+[![Containerized](https://img.shields.io/badge/Docker-App-2496ED?logo=docker&logoColor=white)](https://sake.ashystone-c8f41cd1.centralus.azurecontainerapps.io)
+
+- Container App
+
+## 🔥 Streamlit
+
+[![Streamlit App](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://sake-py.streamlit.app/)
+
+- Web App
+
+![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
+___
+
+## ☁️ Google (Colab)
 <a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-nb.gif)
 
+- Jupyter notebook
+___
+
 ## 🧱 Databricks
 [![Databricks Notebook](https://img.shields.io/badge/Databricks%20Repo-Sake--Py-FF3621?logo=databricks&logoColor=white)](https://dbc-a0c21f80-7bb3.cloud.databricks.com/editor/notebooks/1460524320197777?o=7474645703081351)
+
+- Repo/Codebase
 - A data engineering, analytics, and artificial intelligence collaborative workspace
-- Codebase
 
 
   
-## 🕸️ Streamlit (Web)
-
-[![Streamlit App](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://sake-py.streamlit.app/)
-![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
 
 ## 🧪 How to Run
 
