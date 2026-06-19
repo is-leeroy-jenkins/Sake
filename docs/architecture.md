@@ -1,4 +1,3 @@
-# Sake Architecture
 ![](./images/sake-architecture.png)
 ___
 
