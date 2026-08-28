@@ -12,35 +12,42 @@ A modular machine learning framework for budget execution & data analysis built 
 <table>
 <tr>
 <td align="center">
-<img width="150" height="1" alt=""><br>
+<img width="158" height="1" alt=""><br>
 <a href="https://sake-py.streamlit.app/">
 <img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit App">
 </a>
 </td>
 
 <td align="center">
-<img width="150" height="1" alt=""><br>
+<img width="158" height="1" alt=""><br>
 <a href="https://sake.ashystone-c8f41cd1.centralus.azurecontainerapps.io">
 <img src="https://img.shields.io/badge/Docker-App-2496ED?logo=docker&logoColor=white" alt="Docker App">
 </a>
 </td>
 
 <td align="center">
-<img width="150" height="1" alt=""><br>
+<img width="158" height="1" alt=""><br>
 <a href="https://chatgpt.com/g/g-67579c62ebf88191b67889476229e498-buddy">
 <img src="https://img.shields.io/badge/OpenAI-ChatGPT-412991?logo=openai&logoColor=white" alt="OpenAI GPT">
 </a>
 </td>
 
 <td align="center">
+<img width="158" height="1" alt=""><br>
+<a href="https://colab.research.google.com/github/is-leeroy-jenkins/ScheduleX/blob/master/outlays.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+</a>
+</td>
+
+<td align="center">
 <a href="https://leeroy.usw-16.palantirfoundry.com/shares/links/7sd7ylxjnqzva">
-<img width="150" height="1" alt=""><br>
+<img width="158" height="1" alt=""><br>
 <img src="https://img.shields.io/badge/Palantir%20Foundry-Repository-101113?logo=palantir&logoColor=white" alt="Palantir Repo">
 </a>
 </td>
 
 <td align="center">
-<img width="150" height="1" alt=""><br>
+<img width="158" height="1" alt=""><br>
 <a href="https://dbc-a0c21f80-7bb3.cloud.databricks.com/editor/notebooks/1460524320197777?o=7474645703081351">
 <img src="https://img.shields.io/badge/Databricks%20Repo-Cutey--Py-FF3621?logo=databricks&logoColor=white" alt="Databricks Notebook">
 </a>
