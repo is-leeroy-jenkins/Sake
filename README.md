@@ -28,7 +28,7 @@ A modular machine learning framework for budget execution & data analysis built 
 <td align="center">
 <img width="158" height="1" alt=""><br>
 <a href="https://chatgpt.com/g/g-67579c62ebf88191b67889476229e498-buddy">
-<img src="https://img.shields.io/badge/OpenAI-ChatGPT-412991?logo=openai&logoColor=white" alt="OpenAI GPT">
+<img src="https://img.shields.io/badge/Live%20Demo-Launch%20App-blue?style=for-the-badge&logo=googlechrome&logoColor=white" alt="OpenAI GPT">
 </a>
 </td>
 
