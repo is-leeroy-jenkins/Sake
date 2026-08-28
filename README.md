@@ -322,6 +322,17 @@ If you want, I can also:
 | **AdaBoost Regressor**      | `sklearn.ensemble.AdaBoostRegressor`    |
 | **Extra Trees Regressor**   | `sklearn.ensemble.ExtraTreesRegressor`  |
 
+## 📁 Customize Dataset
+
+Replace dataset ingestion cell with:
+
+```python
+import pandas as pd
+df = pd.read_csv("your_dataset.csv")
+X = df.drop("target_column", axis=1)
+y = df["target_column"]
+```
+
 ## 🎶 Fine-Tuning 
 
 | File Name                                                                                                                                                                 | Description                                                                                                            |
@@ -391,18 +402,6 @@ If you want, I can also:
 | python-dotenv    | Same as above (modern usage)                                     | [python-dotenv](https://saurabh-kumar.com/python-dotenv/) |
 
 
-
-
-## 📁 Customize Dataset
-
-Replace dataset ingestion cell with:
-
-```python
-import pandas as pd
-df = pd.read_csv("your_dataset.csv")
-X = df.drop("target_column", axis=1)
-y = df["target_column"]
-```
 
 
 ## 📊 Outputs
