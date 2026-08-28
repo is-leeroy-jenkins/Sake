@@ -7,39 +7,52 @@ ___
 
 A modular machine learning framework for budget execution & data analysis built in Python with **Scikit**, **XGBoost**, **PyTorch**, and **TensorFlow**. Designed for rapid experimentation, visualization, and benchmarking of both **classification** and **regression** models, it provides a structured yet extensible workflow that’s equally useful for teaching, prototyping, and real-world application development.
 
+## ☁️ Cloud
+
+<table>
+<tr>
+<td align="center">
+<img width="190" height="1" alt=""><br>
+<a href="https://sake-py.streamlit.app/">
+<img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit App">
+</a>
+</td>
+
+<td align="center">
+<img width="190" height="1" alt=""><br>
+<a href="https://sake.ashystone-c8f41cd1.centralus.azurecontainerapps.io">
+<img src="https://img.shields.io/badge/Docker-App-2496ED?logo=docker&logoColor=white" alt="Docker App">
+</a>
+</td>
+
+<td align="center">
+<a href="https://leeroy.usw-16.palantirfoundry.com/shares/links/7sd7ylxjnqzva">
+<img width="190" height="1" alt=""><br>
+<img src="https://img.shields.io/badge/Palantir%20Foundry-Repository-101113?logo=palantir&logoColor=white" alt="Palantir Repo">
+</a>
+</td>
+
+<td align="center">
+<img width="255" height="1" alt=""><br>
+<a href="https://dbc-a0c21f80-7bb3.cloud.databricks.com/editor/notebooks/1460524320197777?o=7474645703081351">
+<img src="https://img.shields.io/badge/Databricks%20Repo-Cutey--Py-FF3621?logo=databricks&logoColor=white" alt="Databricks Notebook">
+</a>
+</td>
+</tr>
+</table>
+
 ## 🎥 Demo
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
 ___
 
-## 🧊 Azure
-
-[![Containerized](https://img.shields.io/badge/Docker-App-2496ED?logo=docker&logoColor=white)](https://sake.ashystone-c8f41cd1.centralus.azurecontainerapps.io)
-
-- Container App
-
-## 🔥 Streamlit
-
-[![Streamlit App](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://sake-py.streamlit.app/)
-
-- Web App
 
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/sake-demo.gif)
 ___
-
-## ☁️ Google (Colab)
-<a href="https://colab.research.google.com/github/is-leeroy-jenkins/sake/blob/master/models.ipynb" target="_parent">
-<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 ![](https://github.com/is-leeroy-jenkins/Sake/blob/master/resources/assets/Sake-nb.gif)
 
 - Jupyter notebook
 ___
-
-## 🧱 Databricks
-[![Databricks Notebook](https://img.shields.io/badge/Databricks%20Repo-Sake--Py-FF3621?logo=databricks&logoColor=white)](https://dbc-a0c21f80-7bb3.cloud.databricks.com/editor/notebooks/1460524320197777?o=7474645703081351)
-
-- Repo/Codebase
-- A data engineering, analytics, and artificial intelligence collaborative workspace
 
 
   
