@@ -244,11 +244,6 @@ If you want, I can also:
 - Model performance rankings across tasks
 - Output available in tabular format for export
 
-## 💡 Custom Dataset Support
-- Accepts CSVs, Excel files, or Pandas DataFrames
-- Label encoding, numeric coercion, missing data handling
-- Drop-in replacement for datasets via parameter injection
-
 ## 🧪 Research Ready
 - Benchmark dozens of models easily
 - Plug-in architecture for testing experimental models
@@ -321,6 +316,12 @@ If you want, I can also:
 | K-Nearest Neighbors         | `sklearn.neighbors.KNeighborsRegressor` |
 | **AdaBoost Regressor**      | `sklearn.ensemble.AdaBoostRegressor`    |
 | **Extra Trees Regressor**   | `sklearn.ensemble.ExtraTreesRegressor`  |
+
+
+## 💡 Custom Dataset Support
+- Accepts CSVs, Excel files, or Pandas DataFrames
+- Label encoding, numeric coercion, missing data handling
+- Drop-in replacement for datasets via parameter injection
 
 ## 📁 Customize Dataset
 
