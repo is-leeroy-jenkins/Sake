@@ -3,7 +3,7 @@
 ___
 
 
-[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-0078FC?style=for-the-badge&logo=github)](https://is-leeroy-jenkins.github.io/Sake/)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-0078FC?style=for-the-badge&logo=github)](https://is-leeroy-jenkins.github.io/sake/)
 
 A modular machine learning framework for budget execution & data analysis built in Python with **Scikit**, **XGBoost**, **PyTorch**, and **TensorFlow**. Designed for rapid experimentation, visualization, and benchmarking of both **classification** and **regression** models, it provides a structured yet extensible workflow that’s equally useful for teaching, prototyping, and real-world application development.
 
